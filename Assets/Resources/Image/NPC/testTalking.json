@@ -1,0 +1,23 @@
+[
+  {
+    "level": "demo",
+    "sentences": [
+      "g:Cẩn thận phía trước nguy hiểm",
+      "g:...",
+      "g:Không phải lúc nào từ đầu đến giờ cũng nguy hiểm à?",
+      "b:Ngươi có để ý là nãy giờ không có nhạc không?",
+      "g:Chắc thằng dev nó quên thêm nhạc thôi",
+      "b:Cũng có lý nhỉ?"
+    ]
+  },
+  {
+    "level": "introlduction",
+    "sentences": [
+      "g:demo sample 1",
+      "c:demo sample 2",
+      "b:ameno",
+      "r:demo sample 3",
+      "s:demo sample"
+    ]
+  }
+]

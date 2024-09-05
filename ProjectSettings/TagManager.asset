@@ -3,16 +3,30 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Sign
+  - SpawnPoint
+  - Rooms
+  - Enemy
+  - CloseDoor
+  - PositionPoint
+  - PlayerPosition
+  - wall
+  - GenEnemyPoint
+  - PlayerBullet
+  - EnemyBullet
+  - BossAttackPoint
+  - CloseDoorBoss
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Rock
   - Water
   - UI
-  - 
-  - 
+  - Ground
+  - Post Processing
   - 
   - 
   - 

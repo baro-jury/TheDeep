@@ -1,0 +1,63 @@
+[
+  {
+    "level": "demo",
+    "sentences": [
+      "g:demo sample 1",
+      "c:demo sample 2",
+      "Quang:ameno",
+      "b:demo sample 3",
+      "r:demo sample"
+    ]
+  },
+  {
+    "level": "introlduction",
+    "sentences": [
+      "s:Ngày xửa ngày xưa, khi cả thế giới vẫn chìm vào trong hỗn loạn, do vết nứt giữa hai thế giới âm dương vì 1 lí do gì đó đã được liên thông với nhau.",
+      "s:Một kẻ vô danh đã dùng thanh kiếm của mình để đóng lại vết nứt và biến mất từ đó.",
+      "s:Người đời sau tương truyền rằng, thanh kiếm của người đó vẫn còn lưu lạc trên thế gian này.",
+      "s:Khu rừng mộc thần - nơi mà có các loài quái vật sinh sống, ít người lui tới.",
+      "s:Nơi đây có sự xuất hiện của hai anh em, trong khi người em có thiên phú về ma thuật có thể tạo ra các loại bùa chú chống lại sự phát hiện của quái vật",
+      "s:thì người anh hoàn toàn là một người bình thường.",
+      "s:Trong lúc cày ruộng, người anh vô tình nhặt được một thứ kỳ lạ.",
+      "s:Do sự tò mò, anh đã mang về nhà và không hề phát hiện ra thứ kỳ lạ xảy ra sau khi đặt nó bên cạnh lò sưởi.",
+      "s:Một ánh sáng nhẹ tỏa ra.",
+      "s:Luồng ánh sáng thần bí ấy đã thu hút sự chú ý của người anh.",
+      "s:Hình dáng của chuôi kiếm dần được hiện ra, phản ứng ma thuật mỗi lúc càng mạnh mẽ.",
+      "c:Cái thứ quái quỷ gì kia?!!",
+      "g:Đây là thứ mà anh đã nhặt vào sáng…",
+      "c:Nó đang phản ứng với ma thuật của em!!!",
+      "s:Vừa dứt lời, chuôi kiếm hướng thẳng vào người em.",
+      "s:Tiếng hét thất thanh của cô em gái vang lên,",
+      "s:người anh ngã gục xuống,",
+      "s:chuôi kiếm đã đâm xuyên vào ngực anh.",
+      "s:Nhưng mọi chuyện chưa kết thúc.",
+      "s:Mặc dù người anh đã cố gắng giữ chặt lấy chuôi kiếm bằng chút sức lực còn lại thế nhưng do phản ứng với ma lực của người em quá lớn",
+      "s:lượng ma thuật phát nổ gây xung chấn lên linh hồn của người em."
+    ]
+  },
+  {
+    "level": "level1",
+    "sentences": [
+      "b:Ấn phím W, A, S, D để di chuyển, không thì ấn 4 phím mũi tên. Ấn chuột trái để bắn.",
+      "g:Mày nói cái gì đấy?",
+      "b:Đôi khi nói chuyện với mặt đất chút thôi. Ấn skip được rồi đấy.",
+      "b:...",
+      "b:...",
+      "b:Được rồi, ấn skip nhanh đi nào",
+      "b:...",
+      "b:...",
+      "b:Tọc mạch quá nhỉ? có còn gì đâu mà ấn next?",
+      "b:...",
+      "b:...",
+      "b:...",
+      "b:...",
+      "b:...",
+      "b:...",
+      "b:XIN CHÚC MỪNG!",
+      "b:BẠN ĐÃ TỐN THỜI GIAN CỦA MÌNH VÀO MẤY CÁI DÒNG THOẠI VÔ BỔ NÀY!",
+      "b:Giờ thì hết rồi, đi đi!",
+      "dev:I wish i can sleep",
+      "dev:I need sleep now, bye!"
+    ]
+  }
+]
