@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f;
 
-    
-
     void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -139,6 +137,7 @@ public class PlayerController : MonoBehaviour
         //    Debug.Log("player's HP: " + playerHP);
         //}
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
