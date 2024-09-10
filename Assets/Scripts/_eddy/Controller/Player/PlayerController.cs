@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,19 +8,14 @@ public class PlayerController : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private InputAction moveInputAction;
     private InputAction attackInputAction;
-
+    private Rigidbody2D rb2D;
+    private Animator anim;
     private Vector2 moveDirection;
 
     [SerializeField]
     private float moveSpeed = 5f;
-    public Rigidbody2D rb2D;
-    public Animator anim;
-    Vector2 movement;
-    public bool facingRight = true;
 
-    public ContactFilter2D movementFilter;
-    List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
-    public float collisionOffset = 0.05f;
+    
 
     void Awake()
     {
@@ -126,5 +121,54 @@ public class PlayerController : MonoBehaviour
         //anim.SetFloat("yVelocity", player.Rb.velocity.y);
         //anim.SetBool("IsGrounded", isGrounded);
         //anim.SetBool("IsFlying", isFlying);
+
+        anim.SetFloat("Vertical", moveDirection.x);
+        anim.SetFloat("Horizontal", moveDirection.y);
+        anim.SetFloat("Speed", moveDirection.sqrMagnitude);
+
+        anim.speed = moveDirection == Vector2.zero ? 0 : moveSpeed;
+
+    }
+
+    // When go to deadzone
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //if (collision.CompareTag("Deadzone"))
+        //{
+        //    playerHP -= 10;
+        //    Debug.Log("player's HP: " + playerHP);
+        //}
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Debug.Log("Ban bi ban trung roi");
+        }
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            Vector3 moveDirection = (transform.position - collision.transform.position).normalized;
+            Vector3 targetPosition = transform.position + moveDirection * 1f;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDirection, 2f);
+            if (hit.collider != null)
+            {
+                Vector3 hitPoint = new Vector3(hit.point.x, hit.point.y, 0f);
+                targetPosition = hitPoint - moveDirection * 0.5f; // Điều chỉnh vị trí đích để tránh va chạm với tường.
+            }
+            StartCoroutine(MoveToPosition(targetPosition));
+            Debug.Log("Ban bi danh trung roi");
+            collision.transform.position = collision.transform.position + moveDirection * -2f;
+
+        }
+    }
+    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    {
+        while (transform.position != targetPosition)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10f * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(MoveToPosition(transform.position));
     }
 }

@@ -162,11 +162,11 @@ GameObject:
   - component: {fileID: 1338375283360603563}
   - component: {fileID: 1338375283360603562}
   - component: {fileID: 1338375283360603558}
-  - component: {fileID: 1374060567}
   - component: {fileID: 1374060570}
   - component: {fileID: 1374060571}
   - component: {fileID: 714770967}
   - component: {fileID: 6719505095421085721}
+  - component: {fileID: 5748121350879231574}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -286,37 +286,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1374060567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338375283360603564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12303732eeb89024c9229fc2633a80dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 1338375283360603562}
-  animator: {fileID: 1338375283360603558}
-  facingRight: 1
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  collisionOffset: 0.05
 --- !u!114 &1374060570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +372,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.11}
   m_Size: {x: 0.13, y: 0.1}
   m_Direction: 0
+--- !u!114 &5748121350879231574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338375283360603564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9ee54dfeec8304eb7f43604930dc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1913219266414136458
 GameObject:
   m_ObjectHideFlags: 0

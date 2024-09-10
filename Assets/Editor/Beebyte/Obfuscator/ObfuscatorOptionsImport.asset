@@ -207,7 +207,7 @@ MonoBehaviour:
   includeProtectedFields: 1
   includeProtectedProperties: 1
   includeProtectedEvents: 1
-  enabled: 1
+  enabled: 0
   onlyObfuscatedSpecifiedNamespaces: 0
   skipNamespacesRecursively: 1
   obfuscateSpecifiedNamespacesRecursively: 1
@@ -217,7 +217,7 @@ MonoBehaviour:
   inheritBeebyteAttributes: 0
   treatScriptableObjectsAsSerializable: 1
   deriveNamesFromCryptoHash: 1
-  sha1seed: 
+  sha1seed: sMymEzVIvkqP3Nz3Vl7Mkrln
   numberOfDifferentCharactersAsPowerOfTwo: 4
   numberOfHashBitsToUse: 6
   allowCopyingOfAllAttributesInFakeCode: 0
@@ -302,3 +302,7 @@ MonoBehaviour:
   obfuscateAnonymousTypes: 0
   obfuscateAnonymousYieldingEnumeratorTypes: 1
   allowCompilerGeneratedFieldsOnSerializedTypesToBeObfuscated: 0
+  literalObfuscationBlockLength: 64
+  skipClassesByRegex:
+  - ^UnitySourceGeneratedAssemblyMonoScriptTypes_v.*$
+  retainIndices: 0

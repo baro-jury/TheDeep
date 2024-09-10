@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour
         if (panel != null)
         {
             panel.SetActive(true);
-            player.GetComponent<CharacterMovement>().enabled = false;
+            player.GetComponent<PlayerController>().enabled = false;
         }
     }
 
@@ -86,7 +86,7 @@ public class DialogueManager : MonoBehaviour
         isPaused = !isPaused;
         Time.timeScale = 1f;
         panel.SetActive(false);
-        player.GetComponent<CharacterMovement>().enabled = true;
+        player.GetComponent<PlayerController>().enabled = true;
     }
 
     private void loadNPCImg()
