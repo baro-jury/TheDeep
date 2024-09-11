@@ -1,94 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-
-public class PlayerShoot : MonoBehaviour
+public partial class PlayerController : MonoBehaviour
 {
+    [Header("Attack")]
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float FireRate;
-    public float nexTimeToFire = 10;
-    public Animator animator;
-    public InputAction fire;
-    public PlayerInputAction action;
-    private bool isCollided = false;
+    public float nextTimeToFire = 10;
+    public float bulletForce = 20f;
 
-    public Collider2D playerCollider;
     private List<GameObject> listBullet;
 
-
-    public float bulletForce = 20f;
-    Vector2 Direction;
-
-    private void Start()
-    {
-        listBullet = new List<GameObject>();
-        for (int i = 0; i < 30; i++)
-        {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            listBullet.Add(bullet);
-        }
-    }
-
-    private void Awake()
-    {
-        action = new PlayerInputAction();
-    }
-    private void OnEnable()
-    {
-        fire = action.Player.Fire;
-        fire.Enable();
-        fire.performed += Fire;
-    }
-
-    private void OnDisable()
-    {
-        fire.Disable();
-    }
-    // Update is called once per frame
-    void Update()
+    void MyPlayerAttack()
     {
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-       // Direction = target - (Vector2)transform.position;
-
-        /* if (Input.GetButtonDown("Fire1") && Time.time > nexTimeToFire)
-         {
-             nexTimeToFire = Time.time + 1/FireRate;
-             Shoot();
-         }*/
-
         Vector3 direction = (Vector3)target - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         firePoint.transform.rotation = rotation;
 
-        // if (Input.GetButtonDown("Fire1"))
-        // {
-        //    GameObject bullet = Instantiate(bulletPrefab, shootPoint.transform.position, shootPoint.transform.rotation);
-        //     bullet.GetComponent<Rigidbody2D>().velocity = transform.right * 10;
-        // }
-    }
-    void Shoot()
-    {
-
-    }
-    private void Fire(InputAction.CallbackContext context)
-    {
-        if (Time.time > nexTimeToFire)
+        if (attackInputAction.IsPressed())
         {
-            nexTimeToFire = Time.time + 1 / FireRate;
-            animator.SetTrigger("swordAttack");
-            GameObject bullet = getBullet();
-            bullet.transform.position = firePoint.transform.position;
-            bullet.transform.rotation = firePoint.transform.rotation;
-            //Debug.Log("Fire: " + bullet.transform.position);
-            bullet.SetActive(true);
+            if (Time.time > nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + 1 / FireRate;
+                anim.SetTrigger("swordAttack");
+                GameObject bullet = getBullet();
+                bullet.transform.position = firePoint.transform.position;
+                bullet.transform.rotation = firePoint.transform.rotation;
+                bullet.SetActive(true);
 
-            //bullet.GetComponent<Rigidbody2D>().AddForce(Direction * bulletForce, ForceMode2D.Impulse);
-            //bullet.GetComponent<Rigidbody2D>().velocity = (transform.right * bulletForce);
+            }
         }
     }
 
@@ -169,5 +113,4 @@ public class PlayerShoot : MonoBehaviour
         //Debug.Log("ConvertVector: " + goToDirection);
         return goToDirection;
     }
-
 }

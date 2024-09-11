@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 1338375283360603563}
   - component: {fileID: 1338375283360603562}
   - component: {fileID: 1338375283360603558}
-  - component: {fileID: 1374060570}
   - component: {fileID: 1374060571}
   - component: {fileID: 714770967}
   - component: {fileID: 6719505095421085721}
@@ -286,34 +285,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1374060570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338375283360603564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61e237b4c55fd84b942390da09d7f99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 1229976450}
-  bulletPrefab: {fileID: 5301169070835344649, guid: 06e2dd0486976c5428e4097d6240a572, type: 3}
-  FireRate: 1
-  nexTimeToFire: 0.25
-  animator: {fileID: 1338375283360603558}
-  fire:
-    m_Name: Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: daa707dd-01a2-43da-acb1-08420ec476cb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  playerCollider: {fileID: 0}
-  bulletForce: 3
 --- !u!114 &1374060571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +356,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  firePoint: {fileID: 1229976450}
+  bulletPrefab: {fileID: 5301169070835344649, guid: 06e2dd0486976c5428e4097d6240a572, type: 3}
+  FireRate: 1
+  nextTimeToFire: 0.25
+  bulletForce: 3
 --- !u!1 &1913219266414136458
 GameObject:
   m_ObjectHideFlags: 0
