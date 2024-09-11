@@ -6,11 +6,19 @@ public partial class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 5f;
+    public GameObject wallRayObj;
+
     private Vector2 moveDirection;
+    private LayerMask layerMask;
+    private bool isBlocked;
 
     void MyPlayerMove()
     {
-        rb2D.velocity = new Vector2(moveSpeed * moveDirection.x, moveSpeed * moveDirection.y);
+        if (!IsBlocked())
+        {
+            rb2D.velocity = new Vector2(moveSpeed * moveDirection.x, moveSpeed * moveDirection.y);
+        }
+       
 
         if (moveDirection.x > 0)
         {
@@ -35,6 +43,37 @@ public partial class PlayerController : MonoBehaviour
         //    transform.position = new Vector2(transform.position.x, 8);
         //} 
         #endregion
+    }
+
+    bool IsBlocked()
+    {
+        // Kiểm tra va chạm với tường sử dụng Raycast
+        //RaycastHit2D hit = Physics2D.Raycast(rb2D.position, moveDirection, 0.1f, layerMask);
+        RaycastHit2D hit = Physics2D.Raycast(wallRayObj.transform.position, moveDirection, 0.1f, layerMask);
+        Debug.Log("distance: " + hit.distance);
+        // Vẽ ray để kiểm tra trong Unity Editor (tùy chọn)
+        Debug.DrawRay(wallRayObj.transform.position, moveDirection * 0.1f, Color.red);
+
+        // Nếu raycast chạm tường, trả về true
+        return hit.collider != null;
+    }
+
+    void _DetectGround()
+    {
+        RaycastHit2D hitWall = Physics2D.Raycast
+            (wallRayObj.transform.position, -Vector2.up, Mathf.Infinity, layerMask);
+        //Debug.Log(isGrounded + ": " + hitGround.distance);
+        if (hitWall.collider != null)
+        {
+            if (hitWall.distance <= 0.1)
+            {
+                isBlocked = true;
+            }
+            else
+            {
+                isBlocked = false;
+            }
+        }
     }
 
     // When go to deadzone

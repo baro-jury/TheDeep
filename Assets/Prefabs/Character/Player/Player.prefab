@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338375283360603564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 0.235, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -262,7 +262,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1338375283360603558
 Animator:
@@ -355,12 +355,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9ee54dfeec8304eb7f43604930dc02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   firePoint: {fileID: 1229976450}
   bulletPrefab: {fileID: 5301169070835344649, guid: 06e2dd0486976c5428e4097d6240a572, type: 3}
   FireRate: 1
   nextTimeToFire: 0.25
   bulletForce: 3
+  moveSpeed: 5
+  wallRayObj: {fileID: 1913219266414136458}
 --- !u!1 &1913219266414136458
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913219266414136458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.141, z: 0}
+  m_LocalPosition: {x: 0, y: -0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

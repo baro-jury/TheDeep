@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1984129860130501059}
   - component: {fileID: 3918443313828753852}
   - component: {fileID: 3621584352256999589}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3868,7 +3868,7 @@ GameObject:
   - component: {fileID: 4455903678512888767}
   - component: {fileID: 2061750984435761768}
   - component: {fileID: 5414010883003823342}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: fence
   m_TagString: wall
   m_Icon: {fileID: 0}
