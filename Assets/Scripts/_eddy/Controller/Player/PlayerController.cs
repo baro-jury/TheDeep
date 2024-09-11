@@ -21,9 +21,6 @@ public partial class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        //layerMask = ~LayerMask.GetMask("Item", "Monster", "NPC", "Player", "Ground");
-        layerMask = LayerMask.GetMask("Rock", "Wall");
-
         listBullet = new List<GameObject>();
         for (int i = 0; i < 30; i++)
         {

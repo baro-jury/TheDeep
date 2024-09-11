@@ -12,12 +12,12 @@ TagManager:
   - CloseDoor
   - PositionPoint
   - PlayerPosition
-  - wall
   - GenEnemyPoint
   - PlayerBullet
   - EnemyBullet
   - BossAttackPoint
   - CloseDoorBoss
+  - wall
   layers:
   - Default
   - TransparentFX
@@ -27,7 +27,7 @@ TagManager:
   - UI
   - Ground
   - Post Processing
-  - 
+  - Wall
   - 
   - 
   - 
