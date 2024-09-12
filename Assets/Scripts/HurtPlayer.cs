@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class HurtPlayer : MonoBehaviour
 {
+    private PlayerController player;
     private Heath healthMan;
     [SerializeField] private float waitToHurt = 1f;
     private bool isCollided;
     [SerializeField] private int damageToGive = 1;
-    // Start is called before the first frame update
+    
     void Start()
     {
         healthMan = FindObjectOfType<Heath>();
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
@@ -22,7 +24,8 @@ public class HurtPlayer : MonoBehaviour
             waitToHurt -= Time.deltaTime;
             if (waitToHurt < 0f)
             {
-                healthMan.hurtPlayer(damageToGive);
+                //healthMan.hurtPlayer(damageToGive);
+                player.hurtPlayer(damageToGive);
                 waitToHurt = 1.5f;
             }
         }

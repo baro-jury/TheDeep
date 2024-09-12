@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class PlayerController : MonoBehaviour
 {
-    [Header("Attack")]
+    [Header("---------- Attack ----------")]
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float FireRate;
@@ -12,6 +12,17 @@ public partial class PlayerController : MonoBehaviour
     public float bulletForce = 20f;
 
     private List<GameObject> listBullet;
+
+    void InitForAttack()
+    {
+        listBullet = new List<GameObject>();
+        for (int i = 0; i < 30; i++)
+        {
+            GameObject bullet = Instantiate(bulletPrefab);
+            bullet.SetActive(false);
+            listBullet.Add(bullet);
+        }
+    }
 
     void MyPlayerAttack()
     {

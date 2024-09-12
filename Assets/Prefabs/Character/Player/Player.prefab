@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 1338375283360603563}
   - component: {fileID: 1338375283360603562}
   - component: {fileID: 1338375283360603558}
-  - component: {fileID: 1374060571}
   - component: {fileID: 714770967}
   - component: {fileID: 6719505095421085721}
   - component: {fileID: 5748121350879231574}
@@ -285,20 +284,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1374060571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338375283360603564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64c623b64b2c4714d80c66d8fc0bd026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashDistance: 5
-  dashDuration: 0.5
 --- !u!114 &714770967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +291,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338375283360603564}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51a8579b8fb24241b12c53959086d1f, type: 3}
   m_Name: 
@@ -360,6 +345,22 @@ MonoBehaviour:
   FireRate: 1
   nextTimeToFire: 0.25
   bulletForce: 3
+  curHealth: 0
+  numOfHearts: 0
+  playerDie: {fileID: 0}
+  hearts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 766447080, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
+  emptyHeart: {fileID: -403153631, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
+  gameOverUI: {fileID: 0}
+  isDead: 0
+  bossBar: {fileID: 0}
+  invincibleTime: 1
+  isCurColliding: 0
   moveSpeed: 5
   wallRayObj: {fileID: 1913219266414136458}
 --- !u!1 &1913219266414136458

@@ -335,6 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf2265edfc873b6448889a5ccdfcbcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damgeToTake: 1
+  animator: {fileID: 0}
+  rb: {fileID: 0}
   healthBar: {fileID: 1558092824}
 --- !u!1 &493354257
 GameObject:
@@ -732,9 +735,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 2
-  m_MatchWidthOrHeight: 0
+  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -750,13 +753,14 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1043512869}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -885,6 +889,7 @@ GameObject:
   - component: {fileID: 1903874179}
   - component: {fileID: 1903874178}
   - component: {fileID: 1903874177}
+  - component: {fileID: 1903874183}
   - component: {fileID: 1903874181}
   - component: {fileID: 1903874182}
   m_Layer: 0
@@ -1015,7 +1020,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903874176}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51a8579b8fb24241b12c53959086d1f, type: 3}
   m_Name: 
@@ -1031,6 +1036,9 @@ MonoBehaviour:
   - {fileID: 657270559}
   fullHeart: {fileID: 766447080, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
   emptyHeart: {fileID: -403153631, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
+  gameOverUI: {fileID: 0}
+  isDead: 0
+  bossBar: {fileID: 0}
   invincibleTime: 0
   isCurColliding: 0
 --- !u!114 &1903874182
@@ -1048,6 +1056,41 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 1903874178}
   facingRight: 1
+--- !u!114 &1903874183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903874176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9ee54dfeec8304eb7f43604930dc02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  FireRate: 0
+  nextTimeToFire: 10
+  bulletForce: 20
+  curHealth: 0
+  numOfHearts: 0
+  playerDie: {fileID: 0}
+  hearts:
+  - {fileID: 1404839025}
+  - {fileID: 493354259}
+  - {fileID: 1781389039}
+  - {fileID: 7609770}
+  - {fileID: 657270559}
+  fullHeart: {fileID: 766447080, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
+  emptyHeart: {fileID: -403153631, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
+  gameOverUI: {fileID: 0}
+  isDead: 0
+  bossBar: {fileID: 0}
+  invincibleTime: 0
+  isCurColliding: 0
+  moveSpeed: 5
+  wallRayObj: {fileID: 0}
 --- !u!1 &2108874803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2108874806}
   - component: {fileID: 2108874805}
-  - component: {fileID: 2108874804}
+  - component: {fileID: 2108874807}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1066,26 +1109,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2108874804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108874803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &2108874805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,6 +1139,36 @@ Transform:
   m_Father: {fileID: 506932405}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2108874807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108874803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1001 &8405189981342349489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1130,6 +1183,30 @@ PrefabInstance:
     - target: {fileID: 8405189980672906930, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405189980782825793, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1043512869}
+    - target: {fileID: 8405189980782825793, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405189980782825822, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405189980782825822, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405189980782825822, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 8405189980782825822, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 8405189981221869542, guid: 53d599b564deb5c4aa6a650ed0639b36, type: 3}
       propertyPath: m_RootOrder

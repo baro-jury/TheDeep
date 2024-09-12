@@ -21,13 +21,8 @@ public partial class PlayerController : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        listBullet = new List<GameObject>();
-        for (int i = 0; i < 30; i++)
-        {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            listBullet.Add(bullet);
-        }
+        InitForAttack();
+        InitForHealth();
     }
 
     private void OnEnable()
@@ -51,6 +46,7 @@ public partial class PlayerController : MonoBehaviour
         InputResponse();
 
         MyPlayerAttack();
+        MyPlayerHealth();
 
         UpdateAnimation();
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public partial class PlayerController : MonoBehaviour
 {
-    [Header("Movement")]
+    [Header("---------- Movement ----------")]
     public float moveSpeed = 5f;
     public GameObject wallRayObj;
 
