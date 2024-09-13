@@ -24,6 +24,8 @@ public partial class PlayerController : MonoBehaviour
 
     void InitForHealth()
     {
+        if (true) return;
+
         invincibleTime = 1.5f;
         curHealth = 5;
         numOfHearts = 5;
@@ -31,6 +33,8 @@ public partial class PlayerController : MonoBehaviour
 
     void MyPlayerHealth()
     {
+        if (true) return;
+
         if (curHealth > numOfHearts)
         {
             curHealth = numOfHearts;
@@ -74,6 +78,8 @@ public partial class PlayerController : MonoBehaviour
 
     public void hurtPlayer(int damageToGive)
     {
+        if (true) return;
+
         curHealth -= damageToGive;
         if (curHealth <= 0 && !isDead)
         {

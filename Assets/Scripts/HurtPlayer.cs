@@ -24,7 +24,7 @@ public class HurtPlayer : MonoBehaviour
             waitToHurt -= Time.deltaTime;
             if (waitToHurt < 0f)
             {
-                //healthMan.hurtPlayer(damageToGive);
+                healthMan.hurtPlayer(damageToGive);
                 player.hurtPlayer(damageToGive);
                 waitToHurt = 1.5f;
             }
@@ -38,6 +38,7 @@ public class HurtPlayer : MonoBehaviour
         {
             Debug.Log("-1");
             other.gameObject.GetComponent<Heath>().hurtPlayer(damageToGive);
+            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
         }
     }
 
@@ -65,6 +66,7 @@ public class HurtPlayer : MonoBehaviour
         {
             Debug.Log("-1");
             other.gameObject.GetComponent<Heath>().hurtPlayer(damageToGive);
+            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
 
         }
     }
