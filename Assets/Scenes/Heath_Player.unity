@@ -891,7 +891,6 @@ GameObject:
   - component: {fileID: 1903874177}
   - component: {fileID: 1903874183}
   - component: {fileID: 1903874181}
-  - component: {fileID: 1903874182}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1041,21 +1040,6 @@ MonoBehaviour:
   bossBar: {fileID: 0}
   invincibleTime: 0
   isCurColliding: 0
---- !u!114 &1903874182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1903874176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80e5b1f61eacae246909640e33eaba43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  rb: {fileID: 1903874178}
-  facingRight: 1
 --- !u!114 &1903874183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1089,8 +1073,6 @@ MonoBehaviour:
   bossBar: {fileID: 0}
   invincibleTime: 0
   isCurColliding: 0
-  moveSpeed: 5
-  wallRayObj: {fileID: 0}
 --- !u!1 &2108874803
 GameObject:
   m_ObjectHideFlags: 0

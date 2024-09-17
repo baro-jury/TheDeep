@@ -509,9 +509,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ae3b01d703d3040b73fd0c1c4027e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hearts: []
-  btPause: {fileID: 0}
-  btResume: {fileID: 0}
+  hearts:
+  - {fileID: 1675581737}
+  - {fileID: 1162188690}
+  - {fileID: 317961598}
+  - {fileID: 1149824571}
+  - {fileID: 1487913591}
+  btPause: {fileID: 342439649}
+  btResume: {fileID: 280000432}
 --- !u!4 &948365551
 Transform:
   m_ObjectHideFlags: 0
@@ -525,7 +530,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970440779
 GameObject:
@@ -635,7 +640,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &970440783
 MonoBehaviour:
@@ -846,7 +851,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1065425949
 GameObject:
@@ -1255,7 +1260,7 @@ RectTransform:
   m_Children:
   - {fileID: 363164085}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
