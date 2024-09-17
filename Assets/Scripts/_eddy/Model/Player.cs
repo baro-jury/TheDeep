@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public int Figure { get; set; }
     public DataPoint DataPoint { get; set; }
 
-    public float moveVelocity = 5f;
+    public float velocity = 5f;
     public int health = 5;
 
     public void Initialize

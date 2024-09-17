@@ -9,7 +9,6 @@ public partial class PlayerController : MonoBehaviour
     [Header("---------- Health ----------")]
     public int curHealth;
     public int numOfHearts;
-    public Animator playerDie;
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;

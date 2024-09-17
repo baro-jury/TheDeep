@@ -65,16 +65,17 @@ public partial class PlayerController : MonoBehaviour
 
     void UpdateAnimation()
     {
-        //anim.SetFloat("xVelocity", player.Rb.velocity.x);
-        //anim.SetFloat("yVelocity", player.Rb.velocity.y);
+
+        //anim.SetFloat("velocity", rb2D.velocity.magnitude);
+        anim.SetFloat("xVelocity", rb2D.velocity.x);
+        anim.SetFloat("yVelocity", rb2D.velocity.y);
         //anim.SetBool("IsGrounded", isGrounded);
         //anim.SetBool("IsFlying", isFlying);
 
-        anim.SetFloat("Vertical", moveDirection.x);
-        anim.SetFloat("Horizontal", moveDirection.y);
-        anim.SetFloat("Speed", moveDirection.sqrMagnitude);
-
-        anim.speed = moveDirection == Vector2.zero ? 0 : player.moveVelocity;
+        //anim.SetFloat("Vertical", moveDirection.x);
+        //anim.SetFloat("Horizontal", moveDirection.y);
+        //anim.SetFloat("Speed", moveDirection.sqrMagnitude);
+        //anim.speed = moveDirection == Vector2.zero ? 0 : player.velocity;
     }
 
 }
