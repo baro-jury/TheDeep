@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public partial class PlayerController : MonoBehaviour
 {
+    private Player player;
     private PlayerInputActions playerInputActions;
     private InputAction moveInputAction;
     private InputAction attackInputAction;
@@ -13,6 +14,7 @@ public partial class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        player = GetComponent<Player>();
         playerInputActions = new PlayerInputActions();
     }
 
@@ -72,7 +74,7 @@ public partial class PlayerController : MonoBehaviour
         anim.SetFloat("Horizontal", moveDirection.y);
         anim.SetFloat("Speed", moveDirection.sqrMagnitude);
 
-        anim.speed = moveDirection == Vector2.zero ? 0 : moveSpeed;
+        anim.speed = moveDirection == Vector2.zero ? 0 : player.moveVelocity;
     }
 
 }

@@ -5,9 +5,6 @@ using UnityEngine;
 public partial class PlayerController : MonoBehaviour
 {
     [Header("---------- Movement ----------")]
-    public float moveSpeed = 5f;
-    public GameObject wallRayObj;
-
     private Vector2 moveDirection;
 
     void MyPlayerMove()
@@ -16,7 +13,7 @@ public partial class PlayerController : MonoBehaviour
         //{
         //    rb2D.velocity = new Vector2(moveSpeed * moveDirection.x, moveSpeed * moveDirection.y);
         //}
-        rb2D.velocity = new Vector2(moveSpeed * moveDirection.x, moveSpeed * moveDirection.y);
+        rb2D.velocity = new Vector2(player.moveVelocity * moveDirection.x, player.moveVelocity * moveDirection.y);
 
         if (moveDirection.x > 0)
         {
