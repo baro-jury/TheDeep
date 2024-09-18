@@ -1824,6 +1824,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956985314}
   m_CullTransparentMesh: 1
+--- !u!4 &983775068 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8980827026660870204, guid: 45ea1f23845b1334da21bff4c3fb6b15, type: 3}
+  m_PrefabInstance: {fileID: 8980827026710488481}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &991988005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2854,5 +2859,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bb76b148749c54f9d0f08eba64587d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveVelocity: 5
+  velocity: 5
   health: 5
+--- !u!114 &8980827026710488484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8980827026710488482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37950e00eee9a9e4789f715cba2583ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 983775068}
+  bulletPrefab: {fileID: 5301169070835344649, guid: 06e2dd0486976c5428e4097d6240a572, type: 3}
+  FireRate: 1
+  nextTimeToFire: 0.25
+  bulletForce: 3

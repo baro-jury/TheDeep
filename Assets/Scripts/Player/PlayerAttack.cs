@@ -1,21 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public partial class PlayerController : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    [Header("---------- Attack ----------")]
-    public LayerMask enemyLayers;
-    public Transform attackPoint;
-    public float attackRange = 0.5f;
-
-    public float damage = 5;
+    public Transform firePoint;
     public GameObject bulletPrefab;
-    public float FireRate;
-    public float nextTimeToFire = 10;
-    public float bulletForce = 20f;
+    public float FireRate = 1;
+    public float nextTimeToFire = 0.25f;
+    public float bulletForce = 3;
 
+    private PlayerInputActions playerInputActions;
+    private InputAction attackInputAction;
+    private Animator anim;
     private List<GameObject> listBullet;
+
+    void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+    }
+
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+        InitForAttack();
+
+    }
+
+    void Update()
+    {
+        MyPlayerAttack();
+    }
+
+    private void OnEnable()
+    {
+        attackInputAction = playerInputActions.Player.Attack;
+        attackInputAction.Enable();
+        //attackInputAction.performed += Attack;
+    }
+
+    private void OnDisable()
+    {
+        attackInputAction.Disable();
+    }
 
     void InitForAttack()
     {
@@ -30,20 +58,23 @@ public partial class PlayerController : MonoBehaviour
 
     void MyPlayerAttack()
     {
-        //Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Vector3 direction = (Vector3)target - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        //attackPoint.transform.rotation = rotation;
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = (Vector3)target - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        firePoint.transform.rotation = rotation;
 
         if (attackInputAction.IsPressed())
         {
-            anim.SetTrigger("IsAttacking");
-
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            foreach(Collider2D enemy in hitEnemies)
+            if (Time.time > nextTimeToFire)
             {
-                Debug.Log(enemy.name);
+                nextTimeToFire = Time.time + 1 / FireRate;
+                anim.SetTrigger("swordAttack");
+                GameObject bullet = getBullet();
+                bullet.transform.position = firePoint.transform.position;
+                bullet.transform.rotation = firePoint.transform.rotation;
+                bullet.SetActive(true);
+
             }
         }
     }

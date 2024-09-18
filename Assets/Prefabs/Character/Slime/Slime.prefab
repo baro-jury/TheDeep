@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 1387820632852543448}
   - component: {fileID: 720665714675173350}
   - component: {fileID: 4896309182359021260}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -144,6 +144,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!50 &4938589849463265529
 Rigidbody2D:
   serializedVersion: 4
@@ -234,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  curHealth: 0
 --- !u!58 &720665714675173350
 CircleCollider2D:
   m_ObjectHideFlags: 0
