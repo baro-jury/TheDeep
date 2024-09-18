@@ -16,7 +16,10 @@ public class EnemyHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (curHealth == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public int getCurHealth()
@@ -24,12 +27,17 @@ public class EnemyHealth : MonoBehaviour
         return curHealth;
     }
 
+    public void Hurt()
+    {
+        Debug.Log(name + " Hurted");
+        curHealth = curHealth - 1;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {
-            Debug.Log("Shooted");
-            curHealth = curHealth - 1;
+            Hurt();
         }
     }
 }

@@ -34,7 +34,7 @@ public partial class PlayerController : MonoBehaviour
 
         attackInputAction = playerInputActions.Player.Attack;
         attackInputAction.Enable();
-        //attackInputAction.performed += Attack;
+        attackInputAction.performed += Attack;
     }
 
     private void OnDisable()

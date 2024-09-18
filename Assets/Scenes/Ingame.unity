@@ -756,15 +756,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9ee54dfeec8304eb7f43604930dc02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1334973936}
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
-  attackPoint: {fileID: 1334973936}
-  attackRange: 1
+  range: 0.6
   damage: 5
+  attackPerSecs: 2.5
   bulletPrefab: {fileID: 5301169070835344649, guid: 06e2dd0486976c5428e4097d6240a572, type: 3}
   FireRate: 5
-  nextTimeToFire: 0
   bulletForce: 20
   curHealth: 5
   numOfHearts: 5

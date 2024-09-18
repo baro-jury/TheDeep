@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public partial class PlayerController : MonoBehaviour
 {
     [Header("---------- Attack ----------")]
-    public LayerMask enemyLayers;
     public Transform attackPoint;
-    public float attackRange = 0.5f;
-
+    public LayerMask enemyLayers;
+    public float range = 0.6f;
     public float damage = 5;
+
+    public float attackPerSecs = 3f;
+    private float nextAttackTime = 0f;
+
     public GameObject bulletPrefab;
     public float FireRate;
-    public float nextTimeToFire = 10;
+
     public float bulletForce = 20f;
 
     private List<GameObject> listBullet;
@@ -30,99 +34,33 @@ public partial class PlayerController : MonoBehaviour
 
     void MyPlayerAttack()
     {
-        //Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Vector3 direction = (Vector3)target - transform.position;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        //attackPoint.transform.rotation = rotation;
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 direction = (Vector3)target - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        attackPoint.transform.rotation = rotation;
+    }
 
-        if (attackInputAction.IsPressed())
+    void Attack(InputAction.CallbackContext context)
+    {
+        if (context.performed && Time.time >= nextAttackTime)
         {
             anim.SetTrigger("IsAttacking");
 
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-            foreach(Collider2D enemy in hitEnemies)
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
+            foreach (Collider2D enemy in hitEnemies)
             {
-                Debug.Log(enemy.name);
+                enemy.GetComponent<EnemyHealth>().Hurt();
             }
+
+            nextAttackTime = Time.time + 1f / attackPerSecs;
         }
     }
 
-    public GameObject getBullet()
+    private void OnDrawGizmosSelected()
     {
-        foreach (var o in listBullet)
-        {
-            if (!o.activeSelf)
-            {
-                o.SetActive(true);
-                return o;
-            }
-        }
-        return null;
-    }
+        if (attackPoint == null) return;
 
-    public Vector3 ConvertVector(Vector3 dir)
-    {
-        float directionX = 0;
-        float directionY = 0;
-        if (dir.x == 0 && dir.y != 0)
-        {
-            directionY = dir.y / Mathf.Abs(dir.y);
-            return new Vector3(directionX, directionY, 0);
-        }
-        if (dir.y == 0 && dir.x != 0)
-        {
-            directionX = dir.x / Mathf.Abs(dir.x);
-            return new Vector3(directionX, directionY, 0);
-        }
-        if (dir.x != 0 && dir.y != 0)
-        {
-            if (dir.x < 0 && dir.y < 0)
-            {
-                directionY = ((dir.y / dir.x) * -1);
-                directionX = -1;
-            }
-            if (dir.x > 0 && dir.y > 0)
-            {
-                directionY = (dir.y / dir.x);
-                directionX = 1;
-            }
-            if (dir.x < 0 && dir.y > 0)
-            {
-                directionY = ((dir.y / dir.x) * -1);
-                directionX = -1;
-            }
-            if (dir.x > 0 && dir.y < 0)
-            {
-                directionY = (dir.y / dir.x);
-                directionX = 1;
-            }
-            return new Vector3(directionX, directionY, 0);
-        }
-        return Vector3.zero;
-    }
-    public Vector3 MiniumVector(Vector3 dir)
-    {
-        Vector3 vectorEquation = ConvertVector(dir);
-        float equation = dir.y / dir.x;
-        Vector3 goToDirection = new Vector3(0, 0, 0);
-        if (vectorEquation.x >= 1)
-        {
-            goToDirection = new Vector3(0.5f, 0.5f * equation);
-        }
-        if (vectorEquation.x <= -1)
-        {
-            goToDirection = new Vector3(-0.5f, -0.5f * equation);
-        }
-        if (vectorEquation.y >= 1)
-        {
-            goToDirection = new Vector3(0.5f / equation, 0.5f);
-        }
-        if (vectorEquation.y <= -1)
-        {
-            goToDirection = new Vector3(-0.5f / equation, -0.5f);
-        }
-        //Debug.Log("ConvertVector: " + goToDirection);
-        return goToDirection;
+        Gizmos.DrawWireSphere(attackPoint.position, range);
     }
 }
