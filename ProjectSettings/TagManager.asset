@@ -55,6 +55,27 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 2731963077
+    locked: 0
+  - name: TopTerrain
+    uniqueID: 3290788155
+    locked: 0
+  - name: Character
+    uniqueID: 282386797
+    locked: 0
+  - name: SideTerrain
+    uniqueID: 3413716313
+    locked: 0
+  - name: BottomTerrain
+    uniqueID: 1872002283
+    locked: 0
+  - name: Gate
+    uniqueID: 1498110505
+    locked: 0
+  - name: RoadSideWall
+    uniqueID: 2212460291
+    locked: 0
   - name: Canvas
     uniqueID: 1175776393
     locked: 0

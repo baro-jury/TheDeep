@@ -1118,7 +1118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7524287496103353679}
   m_Layer: 0
-  m_Name: NormalRoom
+  m_Name: roomTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4136,8 +4136,8 @@ Tilemap:
   - first: {x: 0, y: 0, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 101
-      m_TileSpriteIndex: 100
+      m_TileIndex: 116
+      m_TileSpriteIndex: 112
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5847,7 +5847,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 103
+  - m_RefCount: 102
     m_Data: {fileID: 11400000, guid: 96273c602f4beab47822a05334b8b665, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -5877,8 +5877,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 9ac861e93f73c0e44b3094ff9adb05ba, type: 2}
   - m_RefCount: 71
     m_Data: {fileID: 11400000, guid: 16a0a083714a71b49805263b057280da, type: 2}
   - m_RefCount: 4
@@ -6090,7 +6090,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 103
+  - m_RefCount: 102
     m_Data: {fileID: -1033255568, guid: 4437df7feffaa2c4b89d2d7a3b785ff4, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -6114,8 +6114,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -199149123, guid: ee72d1f1d8a235942a10e99e29c9bfca, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1039204702, guid: 4437df7feffaa2c4b89d2d7a3b785ff4, type: 3}
   - m_RefCount: 1
@@ -6286,79 +6286,19 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 5174284924019714534}
     m_ColliderPaths:
-    - - X: 99699992
+    - - X: 110000000
         Y: 80000000
-      - X: 49850000
+      - X: -90000000
         Y: 80000000
-      - X: 49850000
+      - X: -90000000
         Y: -60000000
-      - X: 99699992
-        Y: -60000000
-    - - X: 109670000
-        Y: 80000000
-      - X: 99700000
-        Y: 80000000
-      - X: 99700000
-        Y: -60000000
-      - X: 109670000
-        Y: -60000000
-    - - X: 29909996
-        Y: 80000000
-      - X: -29909996
-        Y: 80000000
-      - X: -29909996
-        Y: -60000000
-      - X: 29909996
-        Y: -60000000
-    - - X: 49849996
-        Y: 80000000
-      - X: 29910002
-        Y: 80000000
-      - X: 29910002
-        Y: -60000000
-      - X: 49849996
-        Y: -60000000
-    - - X: -29910002
-        Y: 80000000
-      - X: -49849996
-        Y: 80000000
-      - X: -49849996
-        Y: -60000000
-      - X: -29910002
-        Y: -60000000
-    - - X: -49850000
-        Y: 80000000
-      - X: -89729992
-        Y: 80000000
-      - X: -89729992
-        Y: -60000000
-      - X: -49850000
+      - X: 110000000
         Y: -60000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 9.969999, y: 8}
-      - {x: 4.985, y: 8}
-      - {x: 4.985, y: -6}
-      - {x: 9.969999, y: -6}
-    - - {x: 10.967, y: 8}
-      - {x: 9.97, y: 8}
-      - {x: 9.97, y: -6}
-      - {x: 10.967, y: -6}
-    - - {x: 2.9909997, y: 8}
-      - {x: -2.9909997, y: 8}
-      - {x: -2.9909997, y: -6}
-      - {x: 2.9909997, y: -6}
-    - - {x: 4.9849997, y: 8}
-      - {x: 2.9910002, y: 8}
-      - {x: 2.9910002, y: -6}
-      - {x: 4.9849997, y: -6}
-    - - {x: -2.9910002, y: 8}
-      - {x: -4.9849997, y: 8}
-      - {x: -4.9849997, y: -6}
-      - {x: -2.9910002, y: -6}
-    - - {x: -4.985, y: 8}
-      - {x: -8.973, y: 8}
-      - {x: -8.973, y: -6}
-      - {x: -4.985, y: -6}
+    - - {x: 11, y: 8}
+      - {x: -9, y: 8}
+      - {x: -9, y: -6}
+      - {x: 11, y: -6}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0
