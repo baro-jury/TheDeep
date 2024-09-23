@@ -225,6 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40106bd4a020efd4392cfba3a176ee2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  roomNormal: {fileID: 7524287496103353672, guid: 15294a35f3945e64ba6dd01639c6118e, type: 3}
+  roadHorizontal: {fileID: 7524287496103353672, guid: 354882348d3aa7a458ed6d8005f12974, type: 3}
+  roadVertical: {fileID: 7524287496103353672, guid: 3c02b92564d9ab9459a7a666d7556a6d, type: 3}
 --- !u!4 &279397348
 Transform:
   m_ObjectHideFlags: 0
@@ -974,7 +977,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.8
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

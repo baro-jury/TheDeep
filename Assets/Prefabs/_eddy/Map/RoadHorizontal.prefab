@@ -2464,6 +2464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74e6c83e086fc3478b0ccfc4cead113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 8940063239549464826}
+  connectedRooms: []
 --- !u!1 &7524287496438634825
 GameObject:
   m_ObjectHideFlags: 0
