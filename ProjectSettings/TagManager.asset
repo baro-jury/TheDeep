@@ -70,9 +70,6 @@ TagManager:
   - name: BottomTerrain
     uniqueID: 1872002283
     locked: 0
-  - name: Gate
-    uniqueID: 1498110505
-    locked: 0
   - name: RoadSideWall
     uniqueID: 2212460291
     locked: 0
