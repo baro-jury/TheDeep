@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -28,12 +28,10 @@ public class MapController : MonoBehaviour
         roomNor = roomNormal.GetComponent<RoomController>();
         roadH = roadHorizontal.GetComponent<RoadController>();
         roadV = roadVertical.GetComponent<RoadController>();
-        TrimTilemap(roomNor.ground);
-        //CleanTilemap(roadH.ground);
-        //CleanTilemap(roadV.ground);
-        //print("room: " + roomNor.ground.size);
-        //print("roadH: " + roadH.ground.size);
-        //print("roadV: " + roadV.ground.size);
+        TilemapResizer.instance.TrimTilemap(roomNor.ground);
+        TilemapResizer.instance.TrimTilemap(roadH.ground);
+        TilemapResizer.instance.TrimTilemap(roadV.ground);
+
         GenerateMap(transform.position);
     }
 
@@ -65,20 +63,4 @@ public class MapController : MonoBehaviour
         }
     }
 
-    void TrimTilemap(Tilemap tilemap)
-    {
-        if (tilemap == null) return;
-
-        tilemap.ResizeBounds();
-        BoundsInt bounds = tilemap.cellBounds;
-        print(bounds);
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
-        print(allTiles.Length);
-        TileBase[] newAllTiles = allTiles.Where(tile => tile != null).ToArray();
-        print(newAllTiles.Length);
-        
-        tilemap.SetTilesBlock(bounds, newAllTiles);
-        print(tilemap.size);
-
-    }
 }
