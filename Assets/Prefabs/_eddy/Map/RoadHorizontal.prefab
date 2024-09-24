@@ -2175,7 +2175,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 8940063239549464826}
-  connectedRooms: []
 --- !u!1 &7524287496438634825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3550,7 +3549,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -15, y: -2, z: 0}
-  m_Size: {x: 30, y: 5, z: 1}
+  m_Size: {x: 25, y: 5, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:

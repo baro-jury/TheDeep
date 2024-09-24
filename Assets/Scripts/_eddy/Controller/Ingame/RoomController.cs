@@ -5,14 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
-    [HideInInspector] public RoomController[] neighbors = { null, null, null, null };
+    public RoomController[] neighbors = { null, null, null, null };
     private GateController[] availableGates = { null, null, null, null };
     [HideInInspector] public bool isClear;
 
     public GateController[] gates;
     public Tilemap ground;
 
-    // Start is called before the first frame update
     void Start()
     {
         

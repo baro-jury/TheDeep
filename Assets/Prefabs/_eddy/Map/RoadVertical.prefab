@@ -1868,7 +1868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ground: {fileID: 8940063239549464826}
-  connectedRooms: []
 --- !u!1 &7524287496438634825
 GameObject:
   m_ObjectHideFlags: 0
