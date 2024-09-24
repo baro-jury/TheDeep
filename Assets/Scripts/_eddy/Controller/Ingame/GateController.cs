@@ -5,14 +5,16 @@ using UnityEngine.Tilemaps;
 
 public class GateController : MonoBehaviour
 {
-    public TilemapRenderer Renderer { get; set; }
-    public TilemapCollider2D Collider2D { get; set; }
+    [HideInInspector] public TilemapRenderer renderer;
+    [HideInInspector] public TilemapCollider2D collider;
+
+    public RoomController room;
 
     // Start is called before the first frame update
     void Start()
     {
-        Renderer = GetComponent<TilemapRenderer>();
-        Collider2D = GetComponent<TilemapCollider2D>();
+        renderer = GetComponent<TilemapRenderer>();
+        collider = GetComponent<TilemapCollider2D>();
     }
 
     // Update is called once per frame

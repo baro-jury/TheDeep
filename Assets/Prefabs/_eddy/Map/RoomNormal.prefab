@@ -895,6 +895,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b9dbb16d9aa942a5a1b4b4f2c464f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  collider: {fileID: 0}
+  room: {fileID: 3927312344366041514}
 --- !u!1 &1130489845290355723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1793,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b9dbb16d9aa942a5a1b4b4f2c464f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  collider: {fileID: 0}
+  room: {fileID: 3927312344366041514}
 --- !u!1 &1804444234201556722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,6 +2767,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b9dbb16d9aa942a5a1b4b4f2c464f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  collider: {fileID: 0}
+  room: {fileID: 3927312344366041514}
 --- !u!1 &2655047641599052931
 GameObject:
   m_ObjectHideFlags: 0
@@ -5753,6 +5762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807b9dbb16d9aa942a5a1b4b4f2c464f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderer: {fileID: 0}
+  collider: {fileID: 0}
+  room: {fileID: 3927312344366041514}
 --- !u!1 &7524287496103353672
 GameObject:
   m_ObjectHideFlags: 0
@@ -5798,11 +5810,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9cdb60e819302541b577fa2253cba3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neighbors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isClear: 0
   gates:
   - {fileID: 891907497357549983}
   - {fileID: 8563309217959102187}
   - {fileID: 1128079786197117732}
   - {fileID: 8639836751049665846}
+  ground: {fileID: 8940063239549464826}
 --- !u!1 &7524287496438634825
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
-    public static ushort TOP = 0;
-    public static ushort RIGHT = 1;
-    public static ushort BOTTOM = 2;
-    public static ushort LEFT = 3;
+    [HideInInspector] public RoomController[] neighbors = { null, null, null, null };
+    private GateController[] availableGates = { null, null, null, null };
+    [HideInInspector] public bool isClear;
 
     public GateController[] gates;
-
-    private RoadController[] neighbors = { null, null, null, null };
-    private GateController[] availableGates = { null, null, null, null };
+    public Tilemap ground;
 
     // Start is called before the first frame update
     void Start()
