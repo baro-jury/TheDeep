@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MapController : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class MapController : MonoBehaviour
         roomNor = roomNormal.GetComponent<RoomController>();
         roadH = roadHorizontal.GetComponent<RoadController>();
         roadV = roadVertical.GetComponent<RoadController>();
-        print("room: " + roomNor.ground.size);
-        print("roadH: " + roadH.ground.size);
-        print("roadV: " + roadV.ground.size);
+        CleanTilemap(roomNor.ground);
+        //CleanTilemap(roadH.ground);
+        //CleanTilemap(roadV.ground);
+        //print("room: " + roomNor.ground.size);
+        //print("roadH: " + roadH.ground.size);
+        //print("roadV: " + roadV.ground.size);
         GenerateMap(transform.position);
     }
 
@@ -58,6 +62,28 @@ public class MapController : MonoBehaviour
                     break;
             }
         }
+    }
 
+    void CleanTilemap(Tilemap tilemap)
+    {
+        if (tilemap == null) return;
+
+        BoundsInt bounds = tilemap.cellBounds;
+        print(bounds);
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+
+        for (int x = 0; x < bounds.size.x; x++)
+        {
+            for (int y = 0; y < bounds.size.y; y++)
+            {
+                TileBase tile = allTiles[x + y * bounds.size.x];
+                if (tile == null)
+                {
+                    // Set the tile at this position to null, effectively "removing" it
+                    Vector3Int position = new Vector3Int(bounds.xMin + x, bounds.yMin + y, 0);
+                    tilemap.SetTile(position, null);
+                }
+            }
+        }
     }
 }
