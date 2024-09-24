@@ -24,7 +24,6 @@ public class Shoot : MonoBehaviour
             b.SetActive(false);
             bullets.Add(b);
         }
-        player = GameObject.FindGameObjectWithTag("PlayerPosition");
     }
 
     // Update is called once per frame

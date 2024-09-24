@@ -20,7 +20,6 @@ public class FollowAI : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("PlayerPosition");
         enemyHealth = GetComponent<EnemyHealth>();
     }
 
