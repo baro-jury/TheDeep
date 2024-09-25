@@ -22,12 +22,15 @@ public class MapController : MonoBehaviour
 
     private RoomController roomNor;
     private RoadController roadH, roadV;
+
     private GameObject currentRoom;
-    private int distanceRoomX, distanceRoomY;
+    private int absDistanceRoomX, absDistanceRoomY;
 
     // Start is called before the first frame update
     void Start()
     {
+        roomList = new List<GameObject>();
+
         roomNor = roomNormal.GetComponent<RoomController>();
         roadH = roadHorizontal.GetComponent<RoadController>();
         roadV = roadVertical.GetComponent<RoadController>();
@@ -36,38 +39,18 @@ public class MapController : MonoBehaviour
         //TilemapResizer.instance.TrimTilemap(roadH.ground);
         //TilemapResizer.instance.TrimTilemap(roadV.ground);
 
-        distanceRoomX = roomNor.ground.size.x + roadH.ground.size.x;
-        distanceRoomY = roomNor.ground.size.y + roadV.ground.size.y;
+        absDistanceRoomX = roomNor.ground.size.x + roadH.ground.size.x;
+        absDistanceRoomY = roomNor.ground.size.y + roadV.ground.size.y;
 
         GenerateMap(transform.position);
+        OpenGates(roomList);
     }
 
     void GenerateMap(Vector2 position)
     {
-        var room = Instantiate(roomNormal, position, Quaternion.identity, transform);
-        roomList.Add(room);
-        currentRoom = room;
-
-        //if (roomList.Count < 9)
-        //{
-        //    Vector2 currentPos = currentRoom.transform.position;
-        //    int direction = Random.Range(0, 4);
-        //    switch (direction)
-        //    {
-        //        case MapController.TOP:
-        //            GenerateMap(new Vector2(currentPos.x, currentPos.y + roomNor.ground.size.y + roadV.ground.size.y));
-        //            break;
-        //        case MapController.RIGHT:
-        //            GenerateMap(new Vector2(currentPos.x + roomNor.ground.size.x + roadH.ground.size.x, currentPos.y));
-        //            break;
-        //        case MapController.BOTTOM:
-        //            GenerateMap(new Vector2(currentPos.x, currentPos.y - roomNor.ground.size.y - roadV.ground.size.y));
-        //            break;
-        //        case MapController.LEFT:
-        //            GenerateMap(new Vector2(currentPos.x - roomNor.ground.size.x - roadH.ground.size.x, currentPos.y));
-        //            break;
-        //    }
-        //}
+        currentRoom = Instantiate(roomNormal, position, Quaternion.identity, transform);
+        currentRoom.GetComponent<RoomController>().isStartRoom = true;
+        roomList.Add(currentRoom);
 
         GenerateRoom(currentRoom);
     }
@@ -75,33 +58,39 @@ public class MapController : MonoBehaviour
     void GenerateRoom(GameObject fromRoom)
     {
         RoomController fromRoomCtrl = fromRoom.GetComponent<RoomController>();
-        int direction = Random.Range(0, 4);
-        while (fromRoomCtrl.neighbors[direction] != null)
-        {
-            direction = Random.Range(0, 4);
-        }
+        if (fromRoomCtrl == null) return;
 
-        Vector2 currentPos = currentRoom.transform.position;
+        List<int> availableDirections = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            if (fromRoomCtrl.neighbors[i] == null)
+            {
+                availableDirections.Add(i);
+            }
+        }
+        if (availableDirections.Count == 0) return;
+        int direction = availableDirections[Random.Range(0, availableDirections.Count)];
+
+        Vector2 pos = currentRoom.transform.position;
         switch (direction)
         {
             case MapController.TOP:
-                currentPos.y += distanceRoomY;
+                pos += Vector2.up * absDistanceRoomY;
                 break;
             case MapController.RIGHT:
-                currentPos.x += distanceRoomX;
+                pos += Vector2.right * absDistanceRoomX;
                 break;
             case MapController.BOTTOM:
-                currentPos.y -= distanceRoomY;
+                pos += Vector2.down * absDistanceRoomY;
                 break;
             case MapController.LEFT:
-                currentPos.x -= distanceRoomX;
+                pos += Vector2.left * absDistanceRoomX;
                 break;
         }
 
-        var room = Instantiate(roomNormal, currentPos, Quaternion.identity, transform);
-        roomList.Add(room);
-        currentRoom = room;
-        CheckNeighbor(currentRoom);
+        currentRoom = Instantiate(roomNormal, pos, Quaternion.identity, transform);
+        roomList.Add(currentRoom);
+        CheckNeighbors(currentRoom);
 
         if (roomList.Count < 9)
         {
@@ -109,74 +98,63 @@ public class MapController : MonoBehaviour
         }
     }
 
-    void CheckNeighbor(GameObject checkingRoom)
+    void CheckNeighbors(GameObject checkingRoom)
     {
-        var checkingRoomCtrl = checkingRoom.GetComponent<RoomController>();
+        RoomController checkingRoomCtrl = checkingRoom.GetComponent<RoomController>();
+        if (checkingRoomCtrl == null) return;
 
-        int checkingRoomDir, roomDir;
-        foreach (GameObject room in roomList)
+        foreach (var room in roomList)
         {
-            float distance = Vector2.Distance(room.transform.position, checkingRoom.transform.position);
-            if (distance != distanceRoomX && distance != distanceRoomY) continue;
-            else if (distance == distanceRoomX)
+            if (room == checkingRoom) continue;
+            RoomController roomCtrl = room.GetComponent<RoomController>();
+            if (roomCtrl == null) continue;
+
+            Vector2 distance = room.transform.position - checkingRoom.transform.position;
+            float absDistanceX = Mathf.Abs(distance.x);
+            float absDistanceY = Mathf.Abs(distance.y);
+
+            if (absDistanceX == absDistanceRoomX && absDistanceY == 0)
             {
-                float distanceX = room.transform.position.x - checkingRoom.transform.position.x;
-
-                checkingRoomDir = distanceX > 0 ? MapController.RIGHT : MapController.LEFT;
-                if (checkingRoomCtrl.neighbors[checkingRoomDir] != null) continue;
-                checkingRoomCtrl.neighbors[checkingRoomDir] = room.GetComponent<RoomController>();
-
-                roomDir = distanceX < 0 ? MapController.RIGHT : MapController.LEFT;
-                room.GetComponent<RoomController>().neighbors[roomDir] = checkingRoomCtrl;
-
-                Instantiate(roadHorizontal,
-                    new Vector2(distanceX > 0 ? checkingRoom.transform.position.x + 26 : checkingRoom.transform.position.x - 20,
-                        checkingRoom.transform.position.y),
-                    Quaternion.identity, transform);
+                LinkRooms(checkingRoom, checkingRoomCtrl, roomCtrl, distance.x, true);
             }
-            else if (distance == distanceRoomY)
+            else if (absDistanceY == absDistanceRoomY && absDistanceX == 0)
             {
-                float distanceY = room.transform.position.y - checkingRoom.transform.position.y;
-
-                checkingRoomDir = distanceY > 0 ? MapController.TOP : MapController.BOTTOM;
-                if (checkingRoomCtrl.neighbors[checkingRoomDir] != null) continue;
-                checkingRoomCtrl.neighbors[checkingRoomDir] = room.GetComponent<RoomController>();
-
-                roomDir = distanceY < 0 ? MapController.TOP : MapController.BOTTOM;
-                room.GetComponent<RoomController>().neighbors[roomDir] = checkingRoomCtrl;
-
-                Instantiate(roadVertical,
-                    new Vector2(checkingRoom.transform.position.x,
-                        distanceY > 0 ? checkingRoom.transform.position.y + 20 : checkingRoom.transform.position.y - 15),
-                    Quaternion.identity, transform);
+                LinkRooms(checkingRoom, checkingRoomCtrl, roomCtrl, distance.y, false);
             }
-
-            //float distanceX = room.transform.position.x - checkingRoom.transform.position.x;
-            //if (Mathf.Abs(distanceX) == distanceRoomX)
-            //{
-            //    checkingRoomDir = distanceX > 0 ? MapController.RIGHT : MapController.LEFT;
-            //    if (checkingRoomCtrl.neighbors[checkingRoomDir] != null) continue;
-            //    checkingRoomCtrl.neighbors[checkingRoomDir] = room.GetComponent<RoomController>();
-
-            //    roomDir = distanceX < 0 ? MapController.RIGHT : MapController.LEFT;
-            //    room.GetComponent<RoomController>().neighbors[roomDir] = checkingRoomCtrl;
-
-            //    continue;
-            //}
-
-            //float distanceY = room.transform.position.y - checkingRoom.transform.position.y;
-            //if (Mathf.Abs(distanceY) == distanceRoomY)
-            //{
-            //    checkingRoomDir = distanceY > 0 ? MapController.TOP : MapController.BOTTOM;
-            //    if (checkingRoomCtrl.neighbors[checkingRoomDir] != null) continue;
-            //    checkingRoomCtrl.neighbors[checkingRoomDir] = room.GetComponent<RoomController>();
-
-            //    roomDir = distanceY < 0 ? MapController.TOP : MapController.BOTTOM;
-            //    room.GetComponent<RoomController>().neighbors[roomDir] = checkingRoomCtrl;
-
-            //    continue;
-            //}
         }
     }
 
+    void LinkRooms(GameObject checkingRoom, RoomController checkingRoomCtrl, RoomController roomCtrl, float distance, bool isHorizontal)
+    {
+        int checkingRoomDir = isHorizontal ? (distance > 0 ? MapController.RIGHT : MapController.LEFT) : (distance > 0 ? MapController.TOP : MapController.BOTTOM);
+        if (checkingRoomCtrl.neighbors[checkingRoomDir] != null) return;
+        checkingRoomCtrl.neighbors[checkingRoomDir] = roomCtrl;
+
+        int roomDir = isHorizontal ? (distance < 0 ? MapController.RIGHT : MapController.LEFT) : (distance < 0 ? MapController.TOP : MapController.BOTTOM);
+        roomCtrl.neighbors[roomDir] = checkingRoomCtrl;
+
+        if (roomCtrl.isStartRoom && roomCtrl.neighbors.Count(neighbor => neighbor != null) >= 2) return;
+
+        checkingRoomCtrl.availableGates.Add(checkingRoomCtrl.gates[checkingRoomDir]);
+        roomCtrl.availableGates.Add(roomCtrl.gates[roomDir]);
+
+        Vector2 position = (Vector2)checkingRoom.transform.position + (isHorizontal ? new Vector2((distance > 0 ? 26 : -20), 0) : new Vector2(0, (distance > 0 ? 20 : -15)));
+        Instantiate(isHorizontal ? roadHorizontal : roadVertical, position, Quaternion.identity, transform);
+    }
+
+    void OpenGates(List<GameObject> roomsInMap)
+    {
+        foreach (var room in roomsInMap)
+        {
+            RoomController roomCtrl = room.GetComponent<RoomController>();
+            if (roomCtrl == null) continue;
+
+            foreach (var gate in roomCtrl.availableGates)
+            {
+                gate.collider.isTrigger = true;
+                gate.renderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+               
+            }
+        }
+    }
 }

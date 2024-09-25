@@ -5,12 +5,21 @@ using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
+    [HideInInspector] public bool isStartRoom;
+
     public RoomController[] neighbors = { null, null, null, null };
-    private GateController[] availableGates = { null, null, null, null };
+    public List<GateController> availableGates;
+
     [HideInInspector] public bool isClear;
 
     public GateController[] gates;
     public Tilemap ground;
+
+    void Awake()
+    {
+        isStartRoom = false;
+        availableGates = new List<GateController>();
+    }
 
     void Start()
     {
@@ -20,6 +29,6 @@ public class RoomController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
