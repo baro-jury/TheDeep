@@ -64,6 +64,9 @@ TagManager:
   - name: Character
     uniqueID: 282386797
     locked: 0
+  - name: Monster
+    uniqueID: 3937419615
+    locked: 0
   - name: SideTerrain
     uniqueID: 3413716313
     locked: 0
