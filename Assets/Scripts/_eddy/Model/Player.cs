@@ -10,9 +10,6 @@ public class Player : MonoBehaviour
     public int Figure { get; set; }
     public DataPoint DataPoint { get; set; }
 
-    public float velocity = 5f;
-    public int health = 5;
-
     public void Initialize
         (int id, string playerName, int @class, int figure, DataPoint dataPoint)
     {
@@ -22,6 +19,11 @@ public class Player : MonoBehaviour
         Figure = figure;
         DataPoint = dataPoint;
     }
+
+    public float velocity = 5f;
+    public int health = 7;
+    public int shield = 5;
+    public int mana = 202;
 }
 
 public class DataPoint

@@ -50,7 +50,7 @@ public partial class PlayerController : MonoBehaviour
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
             foreach (Collider2D enemy in hitEnemies)
             {
-                enemy.GetComponent<EnemyHealth>().Hurt();
+                enemy.GetComponent<MonsterController>().Hurt();
             }
 
             nextAttackTime = Time.time + 1f / attackPerSecs;

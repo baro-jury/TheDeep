@@ -10,23 +10,22 @@ public class MonsterSpawner : MonoBehaviour
 
     private List<Vector3> availableSpawnPositions = new List<Vector3>();
     private bool canSpawn;
-    //private GameObject player;
+    private GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
         canSpawn = true;
-        //player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
 
         InitializeSpawnPositions();
     }
 
     void Update()
     {
-        //if (player == null)
-        //{
-        //    player = GameObject.FindWithTag("Player");
-        //}
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
         SpawnMonsters();
         KillMonsters();
     }
@@ -58,15 +57,16 @@ public class MonsterSpawner : MonoBehaviour
         {
             if (!canSpawn) return;
 
-            //int numOfMonster = Random.Range(5, 7);
-            int numOfMonster = 1;
+            int numOfMonster = Random.Range(5, 7);
+            //int numOfMonster = 1;
             for (int i = 0; i < numOfMonster; i++)
             {
                 if (availableSpawnPositions.Count > 0)
                 {
                     int randomIndex = Random.Range(0, availableSpawnPositions.Count);
                     Vector3 spawnPosition = availableSpawnPositions[randomIndex] + new Vector3(0.5f, 0.5f, 0);
-                    Instantiate(monsterList[Random.Range(0, monsterList.Count)], spawnPosition, Quaternion.identity, transform);
+                    var monster = Instantiate(monsterList[Random.Range(0, monsterList.Count)], spawnPosition, Quaternion.identity, transform);
+                    monster.GetComponent<MonsterController>().target = player.GetComponent<PlayerController>();
 
                     availableSpawnPositions.Remove(availableSpawnPositions[randomIndex]);
                 }

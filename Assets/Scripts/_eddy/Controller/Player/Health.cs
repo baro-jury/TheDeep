@@ -9,7 +9,6 @@ public partial class PlayerController : MonoBehaviour
     [Header("---------- Health ----------")]
     public int curHealth;
     public int numOfHearts;
-    public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
     public GameObject gameOverUI;
@@ -39,23 +38,23 @@ public partial class PlayerController : MonoBehaviour
             curHealth = numOfHearts;
         }
 
-        for (int i = 0; i < hearts.Length; i++)
+        for (int i = 0; i < IngameController.instance.hearts.Length; i++)
         {
             if (i < curHealth)
             {
-                hearts[i].sprite = fullHeart;
+                IngameController.instance.hearts[i].sprite = fullHeart;
             }
             else
             {
-                hearts[i].sprite = emptyHeart;
+                IngameController.instance.hearts[i].sprite = emptyHeart;
             }
             if (i < numOfHearts)
             {
-                hearts[i].enabled = true;
+                IngameController.instance.hearts[i].enabled = true;
             }
             else
             {
-                hearts[i].enabled = false;
+                IngameController.instance.hearts[i].enabled = false;
             }
         }
 

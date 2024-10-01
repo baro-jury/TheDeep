@@ -5,17 +5,10 @@ using UnityEngine;
 public class HurtPlayer : MonoBehaviour
 {
     public PlayerController player;
-    private Heath healthMan;
     [SerializeField] private float waitToHurt = 1f;
     private bool isCollided;
     [SerializeField] private int damageToGive = 1;
-    
-    void Start()
-    {
-        healthMan = FindObjectOfType<Heath>();
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (isCollided)
@@ -23,7 +16,6 @@ public class HurtPlayer : MonoBehaviour
             waitToHurt -= Time.deltaTime;
             if (waitToHurt < 0f)
             {
-                //healthMan.hurtPlayer(damageToGive);
                 player.hurtPlayer(damageToGive);
                 waitToHurt = 1.5f;
             }
@@ -36,7 +28,6 @@ public class HurtPlayer : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             Debug.Log("-1");
-            //other.gameObject.GetComponent<Heath>().hurtPlayer(damageToGive);
             other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
         }
     }
@@ -64,7 +55,6 @@ public class HurtPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("-1");
-            //other.gameObject.GetComponent<Heath>().hurtPlayer(damageToGive);
             other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
 
         }
@@ -74,7 +64,7 @@ public class HurtPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-         
+
             isCollided = true;
         }
     }

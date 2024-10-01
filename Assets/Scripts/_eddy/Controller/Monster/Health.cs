@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class EnemyHealth : MonoBehaviour
+public partial class MonsterController : MonoBehaviour
 {
+    [Header("---------- Health ----------")]
     public int maxHealth = 3;
     [HideInInspector] public int curHealth;
-    // Start is called before the first frame update
-    void Start()
+
+    void InitForHealth()
     {
         curHealth = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    void MonsterHealth()
     {
         if (curHealth == 0)
         {
@@ -22,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public int getCurHealth()
+    public int GetCurHealth()
     {
         return curHealth;
     }
@@ -30,10 +29,10 @@ public class EnemyHealth : MonoBehaviour
     public void Hurt()
     {
         Debug.Log(name + " Hurted");
-        curHealth = curHealth - 1;
+        curHealth--;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2DHealth(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerBullet"))
         {

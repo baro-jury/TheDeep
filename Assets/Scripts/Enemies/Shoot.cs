@@ -15,7 +15,7 @@ public class Shoot : MonoBehaviour
     Vector2 Direction;
     public List<GameObject> bullets;
     public int countBullets;
-    // Start is called before the first frame update
+    
     void Start()
     {
         for (int i = 0; i < countBullets; i++)
