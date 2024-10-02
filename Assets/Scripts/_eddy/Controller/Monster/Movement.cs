@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public partial class MonsterController : MonoBehaviour
+{
+    [Header("---------- Movement ----------")]
+    public float speed;
+    private float distance;
+    public float minimumDistanceFollow;
+    bool moveable = true;
+
+    void MonsterMove()
+    {
+        distance = Vector2.Distance(transform.position, target.transform.position);
+        moveable = true;
+        if (moveable == true)
+        {
+            Vector2 moveVector = target.transform.position - transform.position;
+            Vector2 velocity = moveVector.normalized * monster.velocity;
+            if (moveVector.magnitude < velocity.magnitude * Time.fixedDeltaTime)
+            {
+                rb2D.velocity = Vector2.zero;
+            }
+            else
+            {
+                rb2D.velocity = distance < minimumDistanceFollow ? velocity : Vector2.zero;
+            }
+
+        }
+
+        Flip(rb2D.velocity.x);
+    }
+
+    void Flip(float xVel)
+    {
+        Vector3 scale = transform.localScale;
+        if (xVel * scale.x < 0) scale.x *= -1f;
+        transform.localScale = scale;
+    }
+}

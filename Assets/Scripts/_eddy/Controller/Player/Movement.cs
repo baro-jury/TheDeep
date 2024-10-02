@@ -40,7 +40,7 @@ public partial class PlayerController : MonoBehaviour
         #endregion
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2DMovement(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -62,6 +62,7 @@ public partial class PlayerController : MonoBehaviour
 
         }
     }
+
     private IEnumerator MoveToPosition(Vector3 targetPosition)
     {
         while (transform.position != targetPosition)

@@ -80,4 +80,9 @@ public partial class PlayerController : MonoBehaviour
         //anim.speed = moveDirection == Vector2.zero ? 0 : player.velocity;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnCollisionEnter2DMovement(collision);
+    }
+
 }

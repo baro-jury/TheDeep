@@ -4,14 +4,6 @@ using UnityEngine;
 
 public partial class MonsterController : MonoBehaviour
 {
-    [Header("---------- Follow ----------")]
-    public float speed;
-    private float distance;
-    Vector2 movement;
-    public bool facingRight = true;
-    public float minimumDistanceFollow;
-    bool moveable = true;
-
     private Monster monster;
     private Rigidbody2D rb2D;
     private Animator anim;
@@ -32,45 +24,22 @@ public partial class MonsterController : MonoBehaviour
         InitForHealth();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        distance = Vector2.Distance(transform.position, target.transform.position);
-        moveable = true;
-        if (moveable == true)
-        {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-
-            Vector2 direction = target.transform.position - transform.position;
-            facingRight = direction.x > 0;
-            direction.Normalize();
-            if (distance < minimumDistanceFollow)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-                anim.SetBool("isMove", true);
-            }
-            else
-            {
-                anim.SetBool("isMove", false);
-            }
-
-            if (movement.x > 0 && !facingRight)
-                Flip();
-            else if (movement.x < 0 && facingRight)
-                Flip();
-        }
-
         MonsterAttack();
         MonsterHealth();
+
+        UpdateAnimation();
     }
 
-    void Flip()
+    void FixedUpdate()
     {
-        facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        MonsterMove();
+    }
+
+    void UpdateAnimation()
+    {
+        anim.SetBool("isMove", rb2D.velocity != Vector2.zero);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

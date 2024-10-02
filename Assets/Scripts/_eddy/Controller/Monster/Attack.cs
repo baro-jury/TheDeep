@@ -5,29 +5,32 @@ using UnityEngine;
 public partial class MonsterController : MonoBehaviour
 {
     [Header("---------- Attack ----------")]
+    public List<GameObject> bulletPool;
     public GameObject bullet;
+    public int amoutBulletsToPool;
+
+    public Transform shootPoint;
     public float FireRate;
     float nexTimeToFire = 0;
     public float minimumDistanceAttack;
-    public Transform ShootPoint;
     public float Force;
     Vector2 Direction;
-    public List<GameObject> bullets;
-    public int countBullets;
-
+    
     [SerializeField] private float waitToHurt = 1f;
     private bool isCollided;
     [SerializeField] private int damageToGive = 1;
 
-
     void InitForAttack()
     {
-        for (int i = 0; i < countBullets; i++)
+        Transform pool = GameObject.Find("BulletPool").transform;
+        bulletPool = new List<GameObject>();
+        GameObject temp;
+        for (int i = 0; i < amoutBulletsToPool; i++)
         {
-            GameObject b = Instantiate(bullet);
-            b.GetComponent<HurtPlayer>().player = target;
-            b.SetActive(false);
-            bullets.Add(b);
+            temp = Instantiate(bullet, pool);
+            temp.GetComponent<HurtPlayer>().player = target;
+            temp.SetActive(false);
+            bulletPool.Add(temp);
         }
     }
 
@@ -53,25 +56,30 @@ public partial class MonsterController : MonoBehaviour
 
     }
 
-    GameObject GetBullet()
+    GameObject GetPooledBullet()
     {
-        for (int i = 0; i < bullets.Count; i++)
+        for (int i = 0; i < bulletPool.Count; i++)
         {
-            if (bullets[i].activeSelf == false)
+            if (!bulletPool[i].activeInHierarchy)
             {
-                bullets[i].SetActive(true);
-                bullets[i].transform.position = ShootPoint.position;
-
-                return bullets[i];
+                return bulletPool[i];
             }
         }
         return null;
     }
+
     void ShootBullet()
     {
-        //GameObject bulletIns = Instantiate(GetBullet(), ShootPoint.position, Quaternion.identity);
-        GameObject bulletIns = GetBullet();
-        bulletIns.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
+        GameObject bullet = GetPooledBullet();
+        if (bullet != null)
+        {
+            bullet.transform.position = shootPoint.position;
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
+            print("luc ban: "+Direction * Force);
+            
+        }
+        
     }
 
     void OnCollisionEnter2DAttack(Collision2D other)

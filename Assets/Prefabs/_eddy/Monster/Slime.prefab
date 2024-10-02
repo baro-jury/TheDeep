@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155461524130003928}
   m_Layer: 0
-  m_Name: ShootPoint
+  m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 155461524130003931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.01, y: -0.04, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5089395386882650361}
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 5089395386882650360}
   - component: {fileID: 5089395386882650363}
   - component: {fileID: 5089395386027562751}
+  - component: {fileID: 8936656192805530900}
   - component: {fileID: 1508769898445062437}
   - component: {fileID: 5089395386027562737}
   - component: {fileID: 587753599341201888}
@@ -61,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5089395386882650362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.94565, y: -0.80456525, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -163,6 +164,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8936656192805530900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089395386882650362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a26edba83b27c3942bb318c9e5afeb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 1
+  health: 5
 --- !u!114 &1508769898445062437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,21 +190,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e72ab6a4da8384fac15341ea82290e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPool: []
   bullet: {fileID: 6732296880136480879, guid: 4889a2413e7c671488aab206899ecab8, type: 3}
+  amoutBulletsToPool: 20
+  shootPoint: {fileID: 155461524130003928}
   FireRate: 1
   minimumDistanceAttack: 6
-  ShootPoint: {fileID: 155461524130003928}
-  Force: 90
-  bullets: []
-  countBullets: 20
+  Force: 50
   waitToHurt: 1
   damageToGive: 1
   maxHealth: 5
   curHealth: 0
-  speed: 1
-  facingRight: 1
-  minimumDistanceFollow: 15
   target: {fileID: 0}
+  speed: 1
+  minimumDistanceFollow: 15
 --- !u!114 &5089395386027562737
 MonoBehaviour:
   m_ObjectHideFlags: 0

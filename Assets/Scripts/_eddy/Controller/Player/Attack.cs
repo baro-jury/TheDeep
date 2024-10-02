@@ -6,29 +6,29 @@ using UnityEngine.InputSystem;
 public partial class PlayerController : MonoBehaviour
 {
     [Header("---------- Attack ----------")]
+    public List<GameObject> bulletPool;
+    public GameObject bullet;
+    public int amoutBulletsToPool;
+
     public Transform attackPoint;
     public LayerMask enemyLayers;
     public float range = 0.6f;
     public float damage = 5;
-
     public float attackPerSecs = 3f;
     private float nextAttackTime = 0f;
-
-    public GameObject bulletPrefab;
     public float FireRate;
-
     public float bulletForce = 20f;
-
-    private List<GameObject> listBullet;
 
     void InitForAttack()
     {
-        listBullet = new List<GameObject>();
-        for (int i = 0; i < 30; i++)
+        Transform pool = GameObject.Find("BulletPool").transform;
+        bulletPool = new List<GameObject>();
+        GameObject temp;
+        for (int i = 0; i < amoutBulletsToPool; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            listBullet.Add(bullet);
+            temp = Instantiate(bullet, pool);
+            temp.SetActive(false);
+            bulletPool.Add(temp);
         }
     }
 

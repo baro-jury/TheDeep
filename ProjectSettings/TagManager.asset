@@ -9,7 +9,6 @@ TagManager:
   - SpawnPoint
   - Rooms
   - Enemy
-  - CloseDoor
   - PositionPoint
   - PlayerPosition
   - GenEnemyPoint
@@ -17,7 +16,8 @@ TagManager:
   - EnemyBullet
   - BossAttackPoint
   - CloseDoorBoss
-  - wall
+  - Gate
+  - Wall
   layers:
   - Default
   - TransparentFX
