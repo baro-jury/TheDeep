@@ -42,35 +42,25 @@ public partial class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2DMovement(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Ban bi ban trung roi");
-        }
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("EnemyBullet"))
-        {
-            Vector3 moveDirection = (transform.position - collision.transform.position).normalized;
-            Vector3 targetPosition = transform.position + moveDirection * 1f;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, moveDirection, 2f);
-            if (hit.collider != null)
-            {
-                Vector3 hitPoint = new Vector3(hit.point.x, hit.point.y, 0f);
-                targetPosition = hitPoint - moveDirection * 0.5f; // Điều chỉnh vị trí đích để tránh va chạm với tường.
-            }
-            StartCoroutine(MoveToPosition(targetPosition));
-            Debug.Log("Ban bi danh trung roi");
-            collision.transform.position = collision.transform.position + moveDirection * -2f;
-
+            Vector2 moveDirection = (transform.position - collision.transform.position).normalized;
+            //Vector2 targetPosition = (Vector2)transform.position + moveDirection;
+            //rb2D.MovePosition(targetPosition);
+            float pushForce = 2000f;
+            print("đẩy đẩy đẩy dầu nhớt đây " + moveDirection);
+            rb2D.AddForce(moveDirection * pushForce);
         }
     }
 
-    private IEnumerator MoveToPosition(Vector3 targetPosition)
+    private void OnTriggerEnter2DMovement(Collider2D collision)
     {
-        while (transform.position != targetPosition)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 10f * Time.deltaTime);
-            yield return null;
-        }
-        yield return new WaitForSeconds(0.1f);
-        StartCoroutine(MoveToPosition(transform.position));
+        //if (collision.gameObject.CompareTag("EnemyBullet"))
+        //{
+        //    Vector2 moveDirection = (transform.position - collision.transform.position).normalized;
+        //    float pushForce = 2000f;
+        //    print("đẩy đẩy đẩy dầu nhớt đây " + moveDirection);
+        //    rb2D.AddForce(moveDirection * pushForce);
+        //}
     }
 }

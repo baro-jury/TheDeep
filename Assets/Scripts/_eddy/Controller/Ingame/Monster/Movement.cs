@@ -38,4 +38,23 @@ public partial class MonsterController : MonoBehaviour
         if (xVel * scale.x < 0) scale.x *= -1f;
         transform.localScale = scale;
     }
+
+    private void OnCollisionEnter2DMovement(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            moveable = false;
+        }
+    }
+
+    private void OnTriggerEnter2DMovement(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerBullet"))
+        {
+            if (GetCurHealth() <= 1)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
 }

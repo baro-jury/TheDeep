@@ -57,8 +57,8 @@ public class MonsterSpawner : MonoBehaviour
         {
             if (!canSpawn) return;
 
-            //int numOfMonster = Random.Range(5, 7);
-            int numOfMonster = 1;
+            int numOfMonster = Random.Range(5, 7);
+            //int numOfMonster = 1;
             for (int i = 0; i < numOfMonster; i++)
             {
                 if (availableSpawnPositions.Count > 0)
@@ -87,4 +87,5 @@ public class MonsterSpawner : MonoBehaviour
             room.isClear = true;
         }
     }
+
 }

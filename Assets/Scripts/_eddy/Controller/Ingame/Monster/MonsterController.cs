@@ -44,19 +44,14 @@ public partial class MonsterController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerBullet"))
-        {
-            if (GetCurHealth() <= 1)
-            {
-                Destroy(gameObject);
-            }
-        }
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            moveable = false;
-        }
-
+        OnCollisionEnter2DMovement(collision);
         OnCollisionEnter2DAttack(collision);
         OnCollisionEnter2DHealth(collision);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnTriggerEnter2DMovement(collision);
+        OnTriggerEnter2DAttack(collision);
     }
 }

@@ -76,7 +76,6 @@ public partial class MonsterController : MonoBehaviour
             bullet.transform.position = shootPoint.position;
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
-            print("luc ban: "+Direction * Force);
             
         }
         
@@ -86,7 +85,6 @@ public partial class MonsterController : MonoBehaviour
     {
         if (other.collider.tag == "Player")
         {
-            Debug.Log("-1");
             other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
         }
     }
@@ -109,12 +107,12 @@ public partial class MonsterController : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2DAttack(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("-1");
-            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
+            Debug.Log("-1 quai");
+            collision.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
 
         }
     }
@@ -123,7 +121,6 @@ public partial class MonsterController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
             isCollided = true;
         }
     }
