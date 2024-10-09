@@ -34,7 +34,7 @@ public partial class MonsterController : MonoBehaviour
         }
     }
 
-    void MonsterAttack()
+    public virtual void MonsterAttack()
     {
         if (isCollided)
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class MonsterController : MonoBehaviour
 {
     [Header("---------- Health ----------")]
-    public int maxHealth = 3;
+    public int maxHealth = 5;
     [HideInInspector] public int curHealth;
 
     void InitForHealth()
