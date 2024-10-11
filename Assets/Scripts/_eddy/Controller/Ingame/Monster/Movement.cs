@@ -10,7 +10,7 @@ public partial class MonsterController : MonoBehaviour
     public float minimumDistanceFollow;
     bool moveable = true;
 
-    public virtual void MonsterMove()
+    protected virtual void MonsterMove()
     {
         distance = Vector2.Distance(transform.position, target.transform.position);
         moveable = true;

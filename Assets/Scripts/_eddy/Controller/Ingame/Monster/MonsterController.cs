@@ -37,9 +37,10 @@ public partial class MonsterController : MonoBehaviour
         MonsterMove();
     }
 
-    void UpdateAnimation()
+    protected virtual void UpdateAnimation()
     {
-        anim.SetBool("isMove", rb2D.velocity != Vector2.zero);
+        anim.SetFloat("xVelocity", rb2D.velocity.x);
+        anim.SetFloat("yVelocity", rb2D.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

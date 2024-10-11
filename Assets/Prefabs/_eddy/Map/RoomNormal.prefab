@@ -3620,6 +3620,7 @@ MonoBehaviour:
   room: {fileID: 3927312344366041514}
   monsterList:
   - {fileID: 5089395386882650362, guid: 0320fd6ea991db14490fd989cb45a098, type: 3}
+  - {fileID: 9204286352052157414, guid: f31580c4664a13349998afff6b31cc1f, type: 3}
 --- !u!1 &4620147012041714905
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,27 +54,27 @@ public partial class PlayerController : MonoBehaviour
 
         UpdateAnimation();
 
-        float force = 1000f;
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            print("trai");
-            rb2D.AddForce(Vector2.left * force);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad8))
-        {
-            print("tren");
-            rb2D.AddForce(Vector2.up * force);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            print("phai");
-            rb2D.AddForce(Vector2.right * force);
-        }
-        else if (Input.GetKeyDown(KeyCode.Keypad2))
-        {
-            print("duoi");
-            rb2D.AddForce(Vector2.down * force);
-        }
+        //float force = 1000f;
+        //if (Input.GetKeyDown(KeyCode.Keypad4))
+        //{
+        //    print("trai");
+        //    rb2D.AddForce(Vector2.left * force);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Keypad8))
+        //{
+        //    print("tren");
+        //    rb2D.AddForce(Vector2.up * force);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Keypad6))
+        //{
+        //    print("phai");
+        //    rb2D.AddForce(Vector2.right * force);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Keypad2))
+        //{
+        //    print("duoi");
+        //    rb2D.AddForce(Vector2.down * force);
+        //}
     }
 
     void FixedUpdate()
@@ -89,11 +89,8 @@ public partial class PlayerController : MonoBehaviour
 
     void UpdateAnimation()
     {
-        //anim.SetFloat("velocity", rb2D.velocity.magnitude);
         anim.SetFloat("xVelocity", rb2D.velocity.x);
         anim.SetFloat("yVelocity", rb2D.velocity.y);
-        //anim.SetBool("IsGrounded", isGrounded);
-        //anim.SetBool("IsFlying", isFlying);
 
     }
 

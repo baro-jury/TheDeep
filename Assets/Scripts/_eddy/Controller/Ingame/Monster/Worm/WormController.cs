@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class WormController : MonsterController
 {
-    public override void MonsterMove()
+    protected override void MonsterMove()
     {
-        
+        base.MonsterMove();
     }
 
-    public override void MonsterAttack()
+    protected override void MonsterAttack()
     {
         base.MonsterAttack();
+    }
+
+    protected override void UpdateAnimation()
+    {
+        base.UpdateAnimation();
     }
 }

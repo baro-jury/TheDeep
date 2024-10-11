@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723269444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15, y: 0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 9204286352052157415}
   - component: {fileID: 9204286352052157410}
   - component: {fileID: 2581099624372819524}
-  - component: {fileID: 1808502662}
+  - component: {fileID: 7088935605808474048}
+  - component: {fileID: 2825787728287753054}
   m_Layer: 9
   m_Name: Worm
   m_TagString: Enemy
@@ -175,7 +176,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.055162832, y: 0.044371933}
+  m_Offset: {x: 0.02, y: 0.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -186,9 +187,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.44866946, y: 0.5450246}
+  m_Size: {x: 0.4, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &1808502662
+--- !u!114 &7088935605808474048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,14 +198,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 9204286352052157414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dae7cc4623363bf4e91acf5824d47242, type: 3}
+  m_Script: {fileID: 11500000, guid: a26edba83b27c3942bb318c9e5afeb1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: 1
+  health: 5
+--- !u!114 &2825787728287753054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204286352052157414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e635e0d585d5c7f49a21b2954c53c828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPool: []
   bullet: {fileID: 6732296880136480879, guid: 4889a2413e7c671488aab206899ecab8, type: 3}
+  amoutBulletsToPool: 20
+  shootPoint: {fileID: 1723269445}
   FireRate: 1
-  minimumDistance: 15
-  player: {fileID: 0}
-  ShootPoint: {fileID: 1723269445}
+  minimumDistanceAttack: 15
   Force: 120
-  bullets: []
-  countBullets: 20
+  waitToHurt: 1
+  damageToGive: 1
+  maxHealth: 5
+  curHealth: 0
+  target: {fileID: 0}
+  speed: 1
+  minimumDistanceFollow: 15
