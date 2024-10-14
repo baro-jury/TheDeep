@@ -7,6 +7,8 @@ public class EnemyBullet : BulletController
         base.OnTriggerEnter2D(collision);
         if (collision.gameObject.CompareTag("Player"))
         {
+            Debug.Log("dan gay dame");
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(bulletDamage);
             HideBullet();
         }
     }

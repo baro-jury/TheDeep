@@ -53,6 +53,5 @@ public partial class MonsterController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OnTriggerEnter2DMovement(collision);
-        OnTriggerEnter2DAttack(collision);
     }
 }

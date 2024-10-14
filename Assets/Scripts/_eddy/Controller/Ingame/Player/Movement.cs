@@ -50,14 +50,4 @@ public partial class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2DMovement(Collider2D collision)
-    {
-        //if (collision.gameObject.CompareTag("EnemyBullet"))
-        //{
-        //    Vector2 moveDirection = (transform.position - collision.transform.position).normalized;
-        //    float pushForce = 2000f;
-        //    print("đẩy đẩy đẩy dầu nhớt đây " + moveDirection);
-        //    rb2D.AddForce(moveDirection * pushForce);
-        //}
-    }
 }

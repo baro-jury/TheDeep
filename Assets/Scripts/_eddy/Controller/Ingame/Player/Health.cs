@@ -30,6 +30,17 @@ public partial class PlayerController : MonoBehaviour
 
     void MyPlayerHealth()
     {
+        //if (currentHP <= 0 && !isDead)
+        //{
+        //    isDead = true;
+        //    Time.timeScale = 0f;
+        //    gameOverUI.SetActive(true);
+        //    if (bossBar != null)
+        //    {
+        //        bossBar.SetActive(false);
+        //    }
+        //}
+
         //if (currentHP > numOfHearts)
         //{
         //    currentHP = numOfHearts;
@@ -57,36 +68,24 @@ public partial class PlayerController : MonoBehaviour
 
     }
 
-    public void Invincible()
+    public void TakeDamage(int damage)
     {
-        if (isInvulnerable == true)
+        if (isInvulnerable)
         {
-            invulnerableTime -= Time.deltaTime;
-
-            if (invulnerableTime < 0)
-            {
-                isInvulnerable = false;
-                invulnerableTime = 1.5f;
-            }
+            print("bo dang bat tu roi");
+            return;
         }
+
+        currentHP -= damage;
+        IngameController.instance.SetHP(currentHP, player.health);
+        StartCoroutine(Invulnerable());
     }
 
-    public void hurtPlayer(int damageToGive)
+    IEnumerator Invulnerable()
     {
-        if (true) return;
-
-        currentHP -= damageToGive;
-        if (currentHP <= 0 && !isDead)
-        {
-            /*gameObject.SetActive(false);*/
-            isDead = true;
-            Time.timeScale = 0f;
-            gameOverUI.SetActive(true);
-            if (bossBar != null)
-            {
-                bossBar.SetActive(false);
-            }
-        }
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        isInvulnerable = false;
     }
 
     public void GameOverRestart()

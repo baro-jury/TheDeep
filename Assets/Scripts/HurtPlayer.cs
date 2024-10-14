@@ -16,7 +16,7 @@ public class HurtPlayer : MonoBehaviour
             waitToHurt -= Time.deltaTime;
             if (waitToHurt < 0f)
             {
-                player.hurtPlayer(damageToGive);
+                player.TakeDamage(damageToGive);
                 waitToHurt = 1.5f;
             }
         }
@@ -28,7 +28,7 @@ public class HurtPlayer : MonoBehaviour
         if (other.collider.tag == "Player")
         {
             Debug.Log("-1");
-            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(damageToGive);
         }
     }
 
@@ -55,7 +55,7 @@ public class HurtPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("-1");
-            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(damageToGive);
 
         }
     }

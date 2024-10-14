@@ -100,9 +100,4 @@ public partial class PlayerController : MonoBehaviour
         OnCollisionEnter2DMovement(collision);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        OnTriggerEnter2DMovement(collision);
-    }
-
 }

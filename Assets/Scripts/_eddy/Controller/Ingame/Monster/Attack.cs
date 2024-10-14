@@ -16,9 +16,7 @@ public partial class MonsterController : MonoBehaviour
     public float Force;
     Vector2 Direction;
 
-    [SerializeField] private float waitToHurt = 1f;
-    private bool isCollided;
-    [SerializeField] private int damageToGive = 1;
+    [SerializeField] private int meleeDamage = 1;
 
     void InitForAttack()
     {
@@ -36,15 +34,7 @@ public partial class MonsterController : MonoBehaviour
 
     protected virtual void MonsterAttack()
     {
-        if (isCollided)
-        {
-            waitToHurt -= Time.deltaTime;
-            if (waitToHurt < 0f)
-            {
-                target.hurtPlayer(damageToGive);
-                waitToHurt = 1.5f;
-            }
-        }
+        //target.TakeDamage(damageToGive);
 
         Direction = target.transform.position - shootPoint.position;
 
@@ -53,7 +43,6 @@ public partial class MonsterController : MonoBehaviour
             nexTimeToFire = Time.time + 1 / FireRate;
             ShootBullet();
         }
-
     }
 
     GameObject GetPooledBullet()
@@ -78,7 +67,6 @@ public partial class MonsterController : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
-
         }
 
     }
@@ -87,51 +75,8 @@ public partial class MonsterController : MonoBehaviour
     {
         if (other.collider.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
-        }
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.collider.tag == "Player")
-        {
-            isCollided = true;
-        }
-
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.collider.tag == "Player")
-        {
-            isCollided = false;
-            waitToHurt = 1.5f;
-        }
-
-    }
-    private void OnTriggerEnter2DAttack(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("-1 quai");
-            collision.gameObject.GetComponent<PlayerController>().hurtPlayer(damageToGive);
-
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            isCollided = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            waitToHurt = 1.5f;
-            isCollided = false;
+            Debug.Log("quai gay dame");
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(meleeDamage);
         }
     }
 

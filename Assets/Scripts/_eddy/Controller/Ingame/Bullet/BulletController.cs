@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    public int bulletDamage = 1;
     public float maxTimeExist = 10f;
     private float timeExist;
 
@@ -22,6 +23,7 @@ public class BulletController : MonoBehaviour
     protected void HideBullet()
     {
         gameObject.SetActive(false);
+        timeExist = 0;
         gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
