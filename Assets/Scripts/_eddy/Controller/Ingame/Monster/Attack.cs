@@ -15,7 +15,7 @@ public partial class MonsterController : MonoBehaviour
     public float minimumDistanceAttack;
     public float Force;
     Vector2 Direction;
-    
+
     [SerializeField] private float waitToHurt = 1f;
     private bool isCollided;
     [SerializeField] private int damageToGive = 1;
@@ -46,7 +46,7 @@ public partial class MonsterController : MonoBehaviour
             }
         }
 
-        Direction = target.transform.position - transform.position;
+        Direction = target.transform.position - shootPoint.position;
 
         if (distance < minimumDistanceFollow && Time.time > nexTimeToFire)
         {
@@ -74,11 +74,13 @@ public partial class MonsterController : MonoBehaviour
         if (bullet != null)
         {
             bullet.transform.position = shootPoint.position;
+            float rotateValue = Mathf.Atan2(-Direction.y, -Direction.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
-            
+
         }
-        
+
     }
 
     void OnCollisionEnter2DAttack(Collision2D other)

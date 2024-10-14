@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPool: []
-  bullet: {fileID: 6732296880136480879, guid: 4889a2413e7c671488aab206899ecab8, type: 3}
+  bullet: {fileID: 6732296880136480879, guid: e3e883eefb5a0b14489031670d2c9acb, type: 3}
   amoutBulletsToPool: 20
   shootPoint: {fileID: 1723269445}
   FireRate: 1

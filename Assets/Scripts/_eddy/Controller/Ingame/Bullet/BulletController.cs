@@ -1,11 +1,36 @@
 using UnityEngine;
 
-public abstract class BulletController : MonoBehaviour
+public class BulletController : MonoBehaviour
 {
-    public abstract void Trigger2D(Collider2D collision);
+    public float maxTimeExist = 10f;
+    private float timeExist;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void Start()
     {
-        Trigger2D(collision);
+        timeExist = 0;
+    }
+
+    void Update()
+    {
+        timeExist += Time.deltaTime;
+        if (timeExist >= maxTimeExist)
+        {
+            HideBullet();
+        }
+    }
+
+    protected void HideBullet()
+    {
+        gameObject.SetActive(false);
+        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall")
+            || collision.gameObject.CompareTag("Gate"))
+        {
+            HideBullet();
+        }
     }
 }

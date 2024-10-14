@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 8311549732704542216}
   - component: {fileID: 3775570992646308131}
   - component: {fileID: -581607589121505380}
-  - component: {fileID: 2033211496641305917}
+  - component: {fileID: 2869917828987987831}
   - component: {fileID: 8582963982308073696}
   - component: {fileID: 3089887483324156082}
   m_Layer: 0
-  m_Name: SlimeBullet
+  m_Name: WormBullet
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6732296880136480879}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: -357547681
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: baab2568fa3e1f54fbde18b77d87c4fe, type: 3}
-  m_Color: {r: 0, g: 0.783113, b: 1, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Color: {r: 0.8666667, g: 0.062745094, b: 0.17323509, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,8 +109,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &2033211496641305917
-CircleCollider2D:
+--- !u!60 &2869917828987987831
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -123,8 +123,20 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49999997
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5773587}
+      - {x: -0.5, y: -0.28866667}
+      - {x: 0.5, y: -0.28866667}
 --- !u!114 &8582963982308073696
 MonoBehaviour:
   m_ObjectHideFlags: 0

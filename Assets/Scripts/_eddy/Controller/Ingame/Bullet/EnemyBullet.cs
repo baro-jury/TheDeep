@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class EnemyBullet : BulletController
 {
-    public override void Trigger2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")
-            || collision.gameObject.CompareTag("Wall")
-            || collision.gameObject.CompareTag("Gate"))
+        base.OnTriggerEnter2D(collision);
+        if (collision.gameObject.CompareTag("Player"))
         {
-            gameObject.SetActive(false);
-            gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            HideBullet();
         }
     }
 }
