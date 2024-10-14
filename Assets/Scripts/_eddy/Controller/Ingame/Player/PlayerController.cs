@@ -21,6 +21,7 @@ public partial class PlayerController : MonoBehaviour
     void Start()
     {
         CameraController.instance.player = player.transform;
+        CameraController.instance.cinemachine.ActiveVirtualCamera.Follow = player.transform;
 
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();

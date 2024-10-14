@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,40 +20,19 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    [HideInInspector]
-    public Transform player;
-
-    public float minX, maxX, minY, maxY;
+    [HideInInspector] public Transform player;
+    [HideInInspector] public CinemachineBrain cinemachine;
 
     void Awake()
     {
         MakeInstance();
+
+        cinemachine = gameObject.GetComponent<CinemachineBrain>();
     }
-    void Update()
+
+    void Start()
     {
-        if (player != null)
-        {
-            Vector3 tempPos = transform.position;
-            tempPos.x = player.position.x;
-            tempPos.y = player.position.y;
-            //if (temp.x < minX)
-            //{
-            //    temp.x = minX;
-            //}
-            //else if (temp.x > maxX)
-            //{
-            //    temp.x = maxX;
-            //}
-            //temp.y = player.position.y;
-            //if (temp.y < minY)
-            //{
-            //    temp.y = minY;
-            //}
-            //else if (temp.y > maxY)
-            //{
-            //    temp.y = maxY;
-            //}
-            transform.position = tempPos;
-        }
+        
     }
+
 }
