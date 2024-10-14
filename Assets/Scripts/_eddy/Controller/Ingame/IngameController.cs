@@ -27,11 +27,17 @@ public class IngameController : MonoBehaviour
 
     [Header("Canvas")]
     public Image[] hearts;
+    public Image hpBar;
+    public Text hpInfo;
     public Button btPause, btResume;
 
     // Start is called before the first frame update
     void Start()
     {
+        hpBar.type = Image.Type.Filled;
+        hpBar.fillMethod = Image.FillMethod.Horizontal;
+        hpBar.fillOrigin = (int)Image.OriginHorizontal.Left;
+
         btPause.gameObject.SetActive(true);
         btResume.gameObject.SetActive(false);
 
@@ -39,7 +45,6 @@ public class IngameController : MonoBehaviour
 
         btPause.onClick.AddListener(Pause);
         btResume.onClick.AddListener(Resume);
-
     }
 
     private void RemoveButtonListener(params Button[] buttons)
@@ -60,5 +65,11 @@ public class IngameController : MonoBehaviour
     {
         Time.timeScale = 1;
         btResume.gameObject.SetActive(false);
+    }
+
+    public void SetHP(float currentHP, float maxHP)
+    {
+        hpBar.fillAmount = currentHP / maxHP;
+        hpInfo.text = (int)currentHP + " / " + (int)maxHP;
     }
 }

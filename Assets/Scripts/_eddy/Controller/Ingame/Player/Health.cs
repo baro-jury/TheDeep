@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public partial class PlayerController : MonoBehaviour
 {
     [Header("---------- Health ----------")]
-    public int curHealth;
+    public int currentHP;
     public int numOfHearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
@@ -15,61 +15,58 @@ public partial class PlayerController : MonoBehaviour
     public bool isDead;
     public GameObject bossBar;
 
-    [SerializeField] private float invincibleTime;
-    private bool isInvincible = false;
+    [SerializeField] private float invulnerableTime;
+    private bool isInvulnerable = false;
 
     public bool isCurColliding = false;
 
     void InitForHealth()
     {
-        if (true) return;
-
-        invincibleTime = 1.5f;
-        curHealth = 5;
+        invulnerableTime = 1.5f;
+        currentHP = player.health;
+        IngameController.instance.SetHP(currentHP, player.health);
         numOfHearts = 5;
     }
 
     void MyPlayerHealth()
     {
-        if (true) return;
+        //if (currentHP > numOfHearts)
+        //{
+        //    currentHP = numOfHearts;
+        //}
 
-        if (curHealth > numOfHearts)
-        {
-            curHealth = numOfHearts;
-        }
-
-        for (int i = 0; i < IngameController.instance.hearts.Length; i++)
-        {
-            if (i < curHealth)
-            {
-                IngameController.instance.hearts[i].sprite = fullHeart;
-            }
-            else
-            {
-                IngameController.instance.hearts[i].sprite = emptyHeart;
-            }
-            if (i < numOfHearts)
-            {
-                IngameController.instance.hearts[i].enabled = true;
-            }
-            else
-            {
-                IngameController.instance.hearts[i].enabled = false;
-            }
-        }
+        //for (int i = 0; i < IngameController.instance.hearts.Length; i++)
+        //{
+        //    if (i < currentHP)
+        //    {
+        //        IngameController.instance.hearts[i].sprite = fullHeart;
+        //    }
+        //    else
+        //    {
+        //        IngameController.instance.hearts[i].sprite = emptyHeart;
+        //    }
+        //    if (i < numOfHearts)
+        //    {
+        //        IngameController.instance.hearts[i].enabled = true;
+        //    }
+        //    else
+        //    {
+        //        IngameController.instance.hearts[i].enabled = false;
+        //    }
+        //}
 
     }
 
     public void Invincible()
     {
-        if (isInvincible == true)
+        if (isInvulnerable == true)
         {
-            invincibleTime -= Time.deltaTime;
+            invulnerableTime -= Time.deltaTime;
 
-            if (invincibleTime < 0)
+            if (invulnerableTime < 0)
             {
-                isInvincible = false;
-                invincibleTime = 1.5f;
+                isInvulnerable = false;
+                invulnerableTime = 1.5f;
             }
         }
     }
@@ -78,8 +75,8 @@ public partial class PlayerController : MonoBehaviour
     {
         if (true) return;
 
-        curHealth -= damageToGive;
-        if (curHealth <= 0 && !isDead)
+        currentHP -= damageToGive;
+        if (currentHP <= 0 && !isDead)
         {
             /*gameObject.SetActive(false);*/
             isDead = true;

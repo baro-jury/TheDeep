@@ -101,6 +101,42 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: tvOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -325,15 +361,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bringer-of-Death_Death_2-sheet_4: -999843071
-      Bringer-of-Death_Death_2-sheet_2: -257401061
       Bringer-of-Death_Death_2-sheet_0: 665517865
+      Bringer-of-Death_Death_2-sheet_1: -1091081006
+      Bringer-of-Death_Death_2-sheet_2: -257401061
+      Bringer-of-Death_Death_2-sheet_3: -117357150
+      Bringer-of-Death_Death_2-sheet_4: -999843071
+      Bringer-of-Death_Death_2-sheet_5: 887344366
       Bringer-of-Death_Death_2-sheet_6: -648526515
       Bringer-of-Death_Death_2-sheet_7: 127008316
-      Bringer-of-Death_Death_2-sheet_3: -117357150
       Bringer-of-Death_Death_2-sheet_8: 984430453
-      Bringer-of-Death_Death_2-sheet_1: -1091081006
-      Bringer-of-Death_Death_2-sheet_5: 887344366
       Bringer-of-Death_Death_2-sheet_9: -1019768780
   spritePackingTag: 
   pSDRemoveMatte: 0

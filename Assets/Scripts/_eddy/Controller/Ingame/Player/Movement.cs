@@ -45,10 +45,7 @@ public partial class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Vector2 moveDirection = (transform.position - collision.transform.position).normalized;
-            //Vector2 targetPosition = (Vector2)transform.position + moveDirection;
-            //rb2D.MovePosition(targetPosition);
             float pushForce = 2000f;
-            print("đẩy đẩy đẩy dầu nhớt đây " + moveDirection);
             rb2D.AddForce(moveDirection * pushForce);
         }
     }
