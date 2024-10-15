@@ -188,15 +188,10 @@ MonoBehaviour:
   attackPerSecs: 2.5
   FireRate: 5
   bulletForce: 20
-  curHealth: 5
-  numOfHearts: 5
-  fullHeart: {fileID: 766447080, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
-  emptyHeart: {fileID: -403153631, guid: d9600027821a6cb4eb195c6adb40db08, type: 3}
   gameOverUI: {fileID: 0}
-  isDead: 0
   bossBar: {fileID: 0}
-  invincibleTime: 0
-  isCurColliding: 0
+  currentHP: 0
+  invulnerableTime: 0
 --- !u!1 &6672712433327341920
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6672712433327341951}
   m_Layer: 0
-  m_Name: AttackPos
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

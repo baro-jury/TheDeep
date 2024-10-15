@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6c10797a663eb545b0e48ebce07b270
+guid: c0a5e12cea1491649aa19020a5d771e0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Alagard
+  - SVN-Coder's Crux
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

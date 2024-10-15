@@ -7,25 +7,20 @@ using UnityEngine.UI;
 public partial class PlayerController : MonoBehaviour
 {
     [Header("---------- Health ----------")]
-    public int currentHP;
-    public int numOfHearts;
-    public Sprite fullHeart;
-    public Sprite emptyHeart;
     public GameObject gameOverUI;
-    public bool isDead;
     public GameObject bossBar;
 
+    [SerializeField] private int currentHP;
+    private bool isDead;
     [SerializeField] private float invulnerableTime;
     private bool isInvulnerable = false;
 
-    public bool isCurColliding = false;
-
     void InitForHealth()
     {
+        isDead = false;
         invulnerableTime = 1.5f;
         currentHP = player.health;
         IngameController.instance.SetHP(currentHP, player.health);
-        numOfHearts = 5;
     }
 
     void MyPlayerHealth()
@@ -38,31 +33,6 @@ public partial class PlayerController : MonoBehaviour
         //    if (bossBar != null)
         //    {
         //        bossBar.SetActive(false);
-        //    }
-        //}
-
-        //if (currentHP > numOfHearts)
-        //{
-        //    currentHP = numOfHearts;
-        //}
-
-        //for (int i = 0; i < IngameController.instance.hearts.Length; i++)
-        //{
-        //    if (i < currentHP)
-        //    {
-        //        IngameController.instance.hearts[i].sprite = fullHeart;
-        //    }
-        //    else
-        //    {
-        //        IngameController.instance.hearts[i].sprite = emptyHeart;
-        //    }
-        //    if (i < numOfHearts)
-        //    {
-        //        IngameController.instance.hearts[i].enabled = true;
-        //    }
-        //    else
-        //    {
-        //        IngameController.instance.hearts[i].enabled = false;
         //    }
         //}
 

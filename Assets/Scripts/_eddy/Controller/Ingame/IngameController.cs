@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,9 +27,8 @@ public class IngameController : MonoBehaviour
     }
 
     [Header("Canvas")]
-    public Image[] hearts;
     public Image hpBar;
-    public Text hpInfo;
+    public TextMeshProUGUI hpInfo;
     public Button btPause, btResume;
 
     // Start is called before the first frame update
@@ -70,6 +70,6 @@ public class IngameController : MonoBehaviour
     public void SetHP(float currentHP, float maxHP)
     {
         hpBar.fillAmount = currentHP / maxHP;
-        hpInfo.text = (int)currentHP + " / " + (int)maxHP;
+        hpInfo.text = (int)currentHP + "/" + (int)maxHP;
     }
 }

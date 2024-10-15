@@ -148,5 +148,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae371d34e890ed46bfc3a41bea2a2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDamage: 1
+  bulletDamage: 2
   maxTimeExist: 10

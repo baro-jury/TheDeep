@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155461524130003928}
   m_Layer: 0
-  m_Name: ShootPoint
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,12 +192,11 @@ MonoBehaviour:
   bulletPool: []
   bullet: {fileID: 6732296880136480879, guid: 4889a2413e7c671488aab206899ecab8, type: 3}
   amoutBulletsToPool: 20
-  shootPoint: {fileID: 155461524130003928}
-  FireRate: 1
+  attackPoint: {fileID: 155461524130003928}
+  attacksPerSec: 1
   minimumDistanceAttack: 6
-  Force: 50
-  waitToHurt: 1
-  damageToGive: 1
+  bulletForce: 250
+  meleeDamage: 1
   maxHealth: 5
   curHealth: 0
   target: {fileID: 0}

@@ -9,14 +9,13 @@ public partial class MonsterController : MonoBehaviour
     public GameObject bullet;
     public int amoutBulletsToPool;
 
-    public Transform shootPoint;
-    public float FireRate;
-    float nexTimeToFire = 0;
+    public Transform attackPoint;
+    public float attacksPerSec;
     public float minimumDistanceAttack;
-    public float Force;
-    Vector2 Direction;
+    public float bulletForce;
 
     [SerializeField] private int meleeDamage = 1;
+    private float timeAttack = 0;
 
     void InitForAttack()
     {
@@ -26,26 +25,41 @@ public partial class MonsterController : MonoBehaviour
         for (int i = 0; i < amoutBulletsToPool; i++)
         {
             temp = Instantiate(bullet, pool);
-            temp.GetComponent<HurtPlayer>().player = target;
             temp.SetActive(false);
             bulletPool.Add(temp);
         }
+
+        timeAttack = 0;
     }
 
     protected virtual void MonsterAttack()
     {
-        //target.TakeDamage(damageToGive);
+        Vector2 direction = target.transform.position - attackPoint.position;
 
-        Direction = target.transform.position - shootPoint.position;
+        //target.TakeDamage(damageToGive);  can chien
 
-        if (distance < minimumDistanceFollow && Time.time > nexTimeToFire)
+        if (distance < minimumDistanceFollow && Time.time > timeAttack)
         {
-            nexTimeToFire = Time.time + 1 / FireRate;
-            ShootBullet();
+            timeAttack = Time.time + 1 / attacksPerSec;
+            ShootBullet(direction);
         }
     }
 
-    GameObject GetPooledBullet()
+    void ShootBullet(Vector2 direction)
+    {
+        GameObject bullet = GetPooledBullet();
+        if (bullet != null)
+        {
+            bullet.transform.position = attackPoint.position;
+            float rotateValue = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
+            bullet.SetActive(true);
+            bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * bulletForce);
+        }
+
+    }
+
+    private GameObject GetPooledBullet()
     {
         for (int i = 0; i < bulletPool.Count; i++)
         {
@@ -55,20 +69,6 @@ public partial class MonsterController : MonoBehaviour
             }
         }
         return null;
-    }
-
-    void ShootBullet()
-    {
-        GameObject bullet = GetPooledBullet();
-        if (bullet != null)
-        {
-            bullet.transform.position = shootPoint.position;
-            float rotateValue = Mathf.Atan2(-Direction.y, -Direction.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
-            bullet.SetActive(true);
-            bullet.GetComponent<Rigidbody2D>().AddForce(Direction * Force);
-        }
-
     }
 
     void OnCollisionEnter2DAttack(Collision2D other)

@@ -16,9 +16,9 @@ public partial class MonsterController : MonoBehaviour
         moveable = true;
         if (moveable == true)
         {
-            Vector2 moveVector = target.transform.position - transform.position;
-            Vector2 velocity = moveVector.normalized * monster.velocity;
-            if (moveVector.magnitude < velocity.magnitude * Time.fixedDeltaTime)
+            Vector2 direction = target.transform.position - transform.position;
+            Vector2 velocity = direction.normalized * monster.velocity;
+            if (direction.magnitude < velocity.magnitude * Time.fixedDeltaTime)
             {
                 rb2D.velocity = Vector2.zero;
             }
