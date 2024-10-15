@@ -27,7 +27,7 @@ public class MonsterSpawner : MonoBehaviour
             player = GameObject.FindWithTag("Player");
         }
         SpawnMonsters();
-        KillMonsters();
+        ClearMonsters();
     }
 
     void InitializeSpawnPositions()
@@ -80,7 +80,7 @@ public class MonsterSpawner : MonoBehaviour
         }
     }
 
-    void KillMonsters()
+    void ClearMonsters()
     {
         if (!canSpawn && transform.childCount == 0)
         {
