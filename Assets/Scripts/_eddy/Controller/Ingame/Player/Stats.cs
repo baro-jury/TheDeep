@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,34 +6,51 @@ using UnityEngine.UI;
 
 public partial class PlayerController : MonoBehaviour
 {
-    [Header("---------- Health ----------")]
+    [Header("---------- Stats ----------")]
     public GameObject gameOverUI;
-    public GameObject bossBar;
 
-    [SerializeField] private int currentHP;
-    private bool isDead;
+    [SerializeField] private int currentHP, currentShield;
     [SerializeField] private float invulnerableTime;
-    private bool isInvulnerable = false;
+    [SerializeField] private float shieldRecoveryTime;
+    private float shieldRecoveryTimer;
+    private bool isInvulnerable;
+    private bool isDead;
 
-    void InitForHealth()
+    void InitStats()
     {
-        isDead = false;
-        invulnerableTime = 1.5f;
         currentHP = player.health;
         IngameController.instance.SetHP(currentHP, player.health);
+        currentShield = player.shield;
+        IngameController.instance.SetShield(currentShield, player.shield);
+
+        shieldRecoveryTimer = 0;
+        isInvulnerable = false;
+        isDead = false;
     }
 
-    void MyPlayerHealth()
+    void MyPlayerStats()
     {
+        if (isInvulnerable)
+        {
+            shieldRecoveryTimer = 0;
+        }
+
+        if (currentShield < player.shield)
+        {
+            shieldRecoveryTimer += Time.deltaTime;
+            if (shieldRecoveryTimer >= shieldRecoveryTime)
+            {
+                currentShield++;
+                IngameController.instance.SetShield(currentShield, player.shield);
+                shieldRecoveryTimer = 0;
+            }
+        }
+
         //if (currentHP <= 0 && !isDead)
         //{
         //    isDead = true;
         //    Time.timeScale = 0f;
         //    gameOverUI.SetActive(true);
-        //    if (bossBar != null)
-        //    {
-        //        bossBar.SetActive(false);
-        //    }
         //}
 
     }
@@ -46,9 +63,18 @@ public partial class PlayerController : MonoBehaviour
             return;
         }
 
-        currentHP -= damage;
+        //currentHP -= damage;
+
+        currentShield -= damage;
+        if (currentShield < 0)
+        {
+            currentHP += currentShield;
+            currentShield = 0;
+        }
+
         anim.SetTrigger("IsHurt");
         IngameController.instance.SetHP(currentHP, player.health);
+        IngameController.instance.SetShield(currentShield, player.shield);
         StartCoroutine(Invulnerable());
     }
 

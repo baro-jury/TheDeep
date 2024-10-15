@@ -15,7 +15,7 @@ public partial class MonsterController : MonoBehaviour
     public float bulletForce;
 
     [SerializeField] private int meleeDamage = 1;
-    private float timeAttack = 0;
+    private float lastTimeAttack;
 
     void InitForAttack()
     {
@@ -28,8 +28,6 @@ public partial class MonsterController : MonoBehaviour
             temp.SetActive(false);
             bulletPool.Add(temp);
         }
-
-        timeAttack = 0;
     }
 
     protected virtual void MonsterAttack()
@@ -38,9 +36,9 @@ public partial class MonsterController : MonoBehaviour
 
         //target.TakeDamage(damageToGive);  can chien
 
-        if (distance < minimumDistanceFollow && Time.time > timeAttack)
+        if (distance < minimumDistanceAttack && Time.time >= lastTimeAttack + 1 / attacksPerSec)
         {
-            timeAttack = Time.time + 1 / attacksPerSec;
+            lastTimeAttack = Time.time;
             ShootBullet(direction);
         }
     }

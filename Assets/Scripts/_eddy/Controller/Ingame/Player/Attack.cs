@@ -14,8 +14,8 @@ public partial class PlayerController : MonoBehaviour
     public LayerMask enemyLayers;
     public float range = 0.6f;
     public float damage = 5;
-    public float attackPerSecs = 3f;
-    private float nextAttackTime = 0f;
+    public float attacksPerSec = 3f;
+    private float lastTimeAttack = 0f;
     public float FireRate;
     public float bulletForce = 20f;
 
@@ -35,15 +35,14 @@ public partial class PlayerController : MonoBehaviour
     void MyPlayerAttack()
     {
         Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = (Vector3)target - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        attackPoint.transform.rotation = rotation;
+        Vector2 direction = target - (Vector2)transform.position;
+        float rotateValue = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        attackPoint.rotation = Quaternion.Euler(new Vector3(0, 0, rotateValue));
     }
 
     void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed && Time.time >= nextAttackTime)
+        if (context.performed && Time.time >= lastTimeAttack + 1 / attacksPerSec)
         {
             anim.SetTrigger("IsAttacking");
 
@@ -53,7 +52,7 @@ public partial class PlayerController : MonoBehaviour
                 enemy.GetComponent<MonsterController>().Hurt();
             }
 
-            nextAttackTime = Time.time + 1f / attackPerSecs;
+            lastTimeAttack = Time.time;
         }
     }
 

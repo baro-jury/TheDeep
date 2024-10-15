@@ -14,17 +14,6 @@ public partial class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
         if (moveDirection.x * scale.x < 0) scale.x *= -1f;
         transform.localScale = scale;
-
-        #region sizeMap
-        //if (transform.position.x < -28.5f || transform.position.x > 28.5f)
-        //{
-        //    transform.position = new Vector2(transform.position.x > 28.5f ? 28.5f : -28.5f, transform.position.y);
-        //}
-        //if (transform.position.y > 8)
-        //{
-        //    transform.position = new Vector2(transform.position.x, 8);
-        //} 
-        #endregion
     }
 
     private void OnCollisionEnter2DMovement(Collision2D collision)

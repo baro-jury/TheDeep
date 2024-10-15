@@ -27,7 +27,7 @@ public partial class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         InitForAttack();
-        InitForHealth();
+        InitStats();
     }
 
     private void OnEnable()
@@ -51,7 +51,7 @@ public partial class PlayerController : MonoBehaviour
         InputResponse();
 
         MyPlayerAttack();
-        MyPlayerHealth();
+        MyPlayerStats();
 
         UpdateAnimation();
 
