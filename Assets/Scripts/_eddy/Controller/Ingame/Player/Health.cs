@@ -47,6 +47,7 @@ public partial class PlayerController : MonoBehaviour
         }
 
         currentHP -= damage;
+        anim.SetTrigger("IsHurt");
         IngameController.instance.SetHP(currentHP, player.health);
         StartCoroutine(Invulnerable());
     }

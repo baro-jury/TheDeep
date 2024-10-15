@@ -92,7 +92,6 @@ public partial class PlayerController : MonoBehaviour
     {
         anim.SetFloat("xVelocity", rb2D.velocity.x);
         anim.SetFloat("yVelocity", rb2D.velocity.y);
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
