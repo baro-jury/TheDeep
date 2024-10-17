@@ -16,7 +16,6 @@ public partial class PlayerController : MonoBehaviour
     public float damage = 5;
     public float attacksPerSec = 3f;
     private float lastTimeAttack = 0f;
-    public float FireRate;
     public float bulletForce = 20f;
 
     void InitForAttack()
@@ -30,14 +29,6 @@ public partial class PlayerController : MonoBehaviour
             temp.SetActive(false);
             bulletPool.Add(temp);
         }
-    }
-
-    void MyPlayerAttack()
-    {
-        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = target - (Vector2)transform.position;
-        float rotateValue = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        attackPoint.rotation = Quaternion.Euler(new Vector3(0, 0, rotateValue));
     }
 
     void Attack(InputAction.CallbackContext context)
@@ -54,6 +45,14 @@ public partial class PlayerController : MonoBehaviour
 
             lastTimeAttack = Time.time;
         }
+    }
+
+    void MyPlayerAttack()
+    {
+        Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = target - (Vector2)transform.position;
+        float rotateValue = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        attackPoint.rotation = Quaternion.Euler(new Vector3(0, 0, rotateValue));
     }
 
     private void OnDrawGizmosSelected()

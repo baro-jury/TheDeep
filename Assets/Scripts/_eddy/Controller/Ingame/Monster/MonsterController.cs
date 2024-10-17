@@ -21,13 +21,13 @@ public partial class MonsterController : MonoBehaviour
         anim = GetComponent<Animator>();
 
         InitForAttack();
-        InitForHealth();
+        InitStats();
     }
 
     void Update()
     {
         MonsterAttack();
-        MonsterHealth();
+        MonsterStats();
 
         UpdateAnimation();
     }

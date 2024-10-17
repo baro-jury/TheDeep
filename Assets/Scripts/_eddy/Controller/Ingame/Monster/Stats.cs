@@ -4,16 +4,16 @@ using UnityEngine;
 
 public partial class MonsterController : MonoBehaviour
 {
-    [Header("---------- Health ----------")]
+    [Header("---------- Stats ----------")]
     public int maxHealth = 5;
     [HideInInspector] public int curHealth;
 
-    void InitForHealth()
+    void InitStats()
     {
         curHealth = maxHealth;
     }
 
-    void MonsterHealth()
+    void MonsterStats()
     {
         if (curHealth == 0)
         {
