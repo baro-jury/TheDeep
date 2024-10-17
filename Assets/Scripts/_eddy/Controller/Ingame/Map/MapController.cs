@@ -71,6 +71,7 @@ public class MapController : MonoBehaviour
         {
             CheckNeighbors(fromRoom, fromRoomCtrl);
         }
+        currentRoom = fromRoom;
 
         List<int> availableDirections = new List<int>();
         for (int i = 0; i < 4; i++)
@@ -100,13 +101,36 @@ public class MapController : MonoBehaviour
                 break;
         }
 
-        currentRoom = Instantiate(roomNormal, pos, Quaternion.identity, transform);
-        roomList.Add(currentRoom);
-        GenerateRoom(currentRoom);
+        var room = Instantiate(roomNormal, pos, Quaternion.identity, transform);
+        roomList.Add(room);
+        GenerateRoom(room);
+
+        //currentRoom = Instantiate(roomNormal, pos, Quaternion.identity, transform);
+        //roomList.Add(currentRoom);
+        //GenerateRoom(currentRoom);
     }
 
     void CheckNeighbors(GameObject checkingRoom, RoomController checkingRoomCtrl)
     {
+        if (checkingRoomCtrl.isLastRoom)
+        {
+            RoomController currentRoomCtrl = currentRoom.GetComponent<RoomController>();
+            if (currentRoomCtrl == null) return;
+
+            Vector2 distance = checkingRoom.transform.position - currentRoom.transform.position;
+            float absDistanceX = Mathf.Abs(distance.x);
+            float absDistanceY = Mathf.Abs(distance.y);
+
+            if (absDistanceX == absDistanceRoomX && absDistanceY == 0)
+            {
+                LinkRooms(currentRoom, currentRoomCtrl, checkingRoomCtrl, distance.x, true);
+            }
+            else if (absDistanceY == absDistanceRoomY && absDistanceX == 0)
+            {
+                LinkRooms(currentRoom, currentRoomCtrl, checkingRoomCtrl, distance.y, false);
+            }
+        }
+
         foreach (var room in roomList)
         {
             if (room == checkingRoom) continue;
@@ -158,7 +182,6 @@ public class MapController : MonoBehaviour
             {
                 gate.gateCollider.isTrigger = true;
                 gate.gateRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-
             }
         }
     }
