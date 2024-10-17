@@ -48,7 +48,7 @@ public class MapController : MonoBehaviour
 
     void GenerateMap(Vector2 position)
     {
-        if (roomList.Count >= numberOfRoom) return;
+        if (roomList.Count == numberOfRoom) return;
 
         currentRoom = Instantiate(roomNormal, position, Quaternion.identity, transform);
         currentRoom.GetComponent<RoomController>().isFirstRoom = true;
@@ -61,6 +61,16 @@ public class MapController : MonoBehaviour
     {
         RoomController fromRoomCtrl = fromRoom.GetComponent<RoomController>();
         if (fromRoomCtrl == null) return;
+        if (roomList.Count == numberOfRoom)
+        {
+            fromRoomCtrl.isLastRoom = true;
+            CheckNeighbors(fromRoom, fromRoomCtrl);
+            return;
+        }
+        else
+        {
+            CheckNeighbors(fromRoom, fromRoomCtrl);
+        }
 
         List<int> availableDirections = new List<int>();
         for (int i = 0; i < 4; i++)
@@ -92,23 +102,11 @@ public class MapController : MonoBehaviour
 
         currentRoom = Instantiate(roomNormal, pos, Quaternion.identity, transform);
         roomList.Add(currentRoom);
-        if (roomList.Count == numberOfRoom)
-        {
-            currentRoom.GetComponent<RoomController>().isLastRoom = true;
-        }
-        CheckNeighbors(currentRoom);
-
-        if (roomList.Count < numberOfRoom)
-        {
-            GenerateRoom(currentRoom);
-        }
+        GenerateRoom(currentRoom);
     }
 
-    void CheckNeighbors(GameObject checkingRoom)
+    void CheckNeighbors(GameObject checkingRoom, RoomController checkingRoomCtrl)
     {
-        RoomController checkingRoomCtrl = checkingRoom.GetComponent<RoomController>();
-        if (checkingRoomCtrl == null) return;
-
         foreach (var room in roomList)
         {
             if (room == checkingRoom) continue;
@@ -122,12 +120,10 @@ public class MapController : MonoBehaviour
             if (absDistanceX == absDistanceRoomX && absDistanceY == 0)
             {
                 LinkRooms(checkingRoom, checkingRoomCtrl, roomCtrl, distance.x, true);
-                //if (checkingRoomCtrl.isLastRoom) break;
             }
             else if (absDistanceY == absDistanceRoomY && absDistanceX == 0)
             {
                 LinkRooms(checkingRoom, checkingRoomCtrl, roomCtrl, distance.y, false);
-                //if (checkingRoomCtrl.isLastRoom) break;
             }
         }
     }
@@ -142,6 +138,7 @@ public class MapController : MonoBehaviour
         roomCtrl.neighbors[roomDir] = checkingRoomCtrl;
 
         if (roomCtrl.isFirstRoom && roomCtrl.neighbors.Count(neighbor => neighbor != null) >= 2) return;
+        if (checkingRoomCtrl.isLastRoom && checkingRoomCtrl.neighbors.Count(neighbor => neighbor != null) >= 2) return;
 
         checkingRoomCtrl.availableGates.Add(checkingRoomCtrl.gates[checkingRoomDir]);
         roomCtrl.availableGates.Add(roomCtrl.gates[roomDir]);

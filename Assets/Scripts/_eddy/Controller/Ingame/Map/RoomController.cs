@@ -5,11 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
-    public RoomController[] neighbors = { null, null, null, null };
+    [HideInInspector] public RoomController[] neighbors = { null, null, null, null };
     [HideInInspector] public List<GateController> availableGates;
 
-     public bool isFirstRoom;
-     public bool isLastRoom;
+    [HideInInspector] public bool isFirstRoom;
+    [HideInInspector] public bool isLastRoom;
     [HideInInspector] public bool isActivated;
     [HideInInspector] public bool isClear;
 

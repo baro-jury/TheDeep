@@ -78,32 +78,6 @@ public class MonsterSpawner : MonoBehaviour
             if (i == (numOfMonster - 1)) canSpawn = false;
         }
 
-
-        //if (!room.isFirstRoom && room.isActivated)
-        //{
-        //    if (!canSpawn) return;
-
-        //    int numOfMonster = Random.Range(5, 7);
-        //    //int numOfMonster = 1;
-        //    for (int i = 0; i < numOfMonster; i++)
-        //    {
-        //        if (availableSpawnPositions.Count > 0)
-        //        {
-        //            int randomIndex = Random.Range(0, availableSpawnPositions.Count);
-        //            Vector3 spawnPosition = availableSpawnPositions[randomIndex] + new Vector3(0.5f, 0.5f, 0);
-        //            var monster = Instantiate(monsterList[Random.Range(0, monsterList.Count)], spawnPosition, Quaternion.identity, transform);
-        //            monster.GetComponent<MonsterController>().target = player.GetComponent<PlayerController>();
-
-        //            availableSpawnPositions.Remove(availableSpawnPositions[randomIndex]);
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("No available positions to spawn the enemy.");
-        //        }
-
-        //        if (i == (numOfMonster - 1)) canSpawn = false;
-        //    }
-        //}
     }
 
     void ClearMonsters()
