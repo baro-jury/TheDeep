@@ -5,10 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class RoomController : MonoBehaviour
 {
-    [HideInInspector] public RoomController[] neighbors = { null, null, null, null };
+    public RoomController[] neighbors = { null, null, null, null };
     [HideInInspector] public List<GateController> availableGates;
 
-    [HideInInspector] public bool isStartRoom;
+     public bool isFirstRoom;
+     public bool isLastRoom;
     [HideInInspector] public bool isActivated;
     [HideInInspector] public bool isClear;
 
@@ -17,8 +18,9 @@ public class RoomController : MonoBehaviour
 
     void Awake()
     {
-        isStartRoom = false;
         availableGates = new List<GateController>();
+        isFirstRoom = false;
+        isLastRoom = false;
     }
 
     void Start()
@@ -40,14 +42,14 @@ public class RoomController : MonoBehaviour
 
     void ActivateRoom()
     {
-        if (!isStartRoom && isActivated)
+        if (isFirstRoom || isLastRoom || !isActivated) return;
+
+        foreach (var gate in availableGates)
         {
-            foreach (var gate in availableGates)
-            {
-                gate.collider.isTrigger = false;
-                gate.renderer.maskInteraction = SpriteMaskInteraction.None;
-            }
+            gate.gateCollider.isTrigger = false;
+            gate.gateRenderer.maskInteraction = SpriteMaskInteraction.None;
         }
+
     }
 
     void ClearRoom()
@@ -56,8 +58,8 @@ public class RoomController : MonoBehaviour
         {
             foreach (var gate in availableGates)
             {
-                gate.collider.isTrigger = true;
-                gate.renderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                gate.gateCollider.isTrigger = true;
+                gate.gateRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
 
             }
         }

@@ -368,6 +368,7 @@ MonoBehaviour:
   roomNormal: {fileID: 7524287496103353672, guid: 15294a35f3945e64ba6dd01639c6118e, type: 3}
   roadHorizontal: {fileID: 7524287496103353672, guid: 354882348d3aa7a458ed6d8005f12974, type: 3}
   roadVertical: {fileID: 7524287496103353672, guid: 3c02b92564d9ab9459a7a666d7556a6d, type: 3}
+  numberOfRoom: 9
   roomList: []
 --- !u!4 &279397348
 Transform:
