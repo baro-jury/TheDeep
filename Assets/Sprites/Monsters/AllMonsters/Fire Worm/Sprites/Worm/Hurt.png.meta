@@ -153,7 +153,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Get Hit_0
+      name: Hurt_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,14 +167,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 402d9ee05beba864586c9aef5900ba28
-      internalID: 1359620733
+      spriteID: affcec03ceaa3934b8a9f51ef5a18eda
+      internalID: 246118454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Get Hit_1
+      name: Hurt_1
       rect:
         serializedVersion: 2
         x: 90
@@ -188,14 +188,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1436f8d9a19cafe488274044a2a57103
-      internalID: -1564374227
+      spriteID: 65c7eea3a732e6949b9dd08456c0f545
+      internalID: -1053020820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Get Hit_2
+      name: Hurt_2
       rect:
         serializedVersion: 2
         x: 180
@@ -209,8 +209,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 905e08e79e4023243b619245c3d5116f
-      internalID: 638068207
+      spriteID: addd9dbe8d5c04945a7be1acb093f65e
+      internalID: 793683760
       vertices: []
       indices: 
       edges: []
@@ -226,9 +226,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Get Hit_0: 1359620733
-      Get Hit_1: -1564374227
-      Get Hit_2: 638068207
+      Hurt_0: 246118454
+      Hurt_1: -1053020820
+      Hurt_2: 793683760
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

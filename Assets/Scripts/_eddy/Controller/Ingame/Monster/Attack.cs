@@ -50,7 +50,8 @@ public partial class MonsterController : MonoBehaviour
         {
             bullet.transform.position = attackPoint.position;
             float rotateValue = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-            bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
+            //bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + 90);
+            bullet.transform.rotation = Quaternion.Euler(0, 0, rotateValue + (int)bullet.GetComponent<BulletController>().spriteDirection);
             bullet.SetActive(true);
             bullet.GetComponent<Rigidbody2D>().AddForce(direction.normalized * bulletForce);
         }

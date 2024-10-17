@@ -2,6 +2,15 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    public enum SpriteDirection
+    {
+        TOP = 90,
+        BOTTOM = -90,
+        LEFT = 0,
+        RIGHT = 180
+    }
+    public SpriteDirection spriteDirection;
+
     public int bulletDamage = 1;
     public float maxTimeExist = 10f;
     private float timeExist;
