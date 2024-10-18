@@ -197,11 +197,11 @@ MonoBehaviour:
   minimumDistanceAttack: 6
   bulletForce: 250
   meleeDamage: 1
-  maxHealth: 5
-  curHealth: 0
   target: {fileID: 0}
   speed: 1
   minimumDistanceFollow: 15
+  maxHealth: 5
+  curHealth: 0
 --- !u!58 &587753599341201888
 CircleCollider2D:
   m_ObjectHideFlags: 0
