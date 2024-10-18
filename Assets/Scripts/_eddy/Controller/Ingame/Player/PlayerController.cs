@@ -5,13 +5,16 @@ using UnityEngine.InputSystem;
 
 public partial class PlayerController : MonoBehaviour
 {
+    [Header("---------- Player ----------")]
+    public PlayerData playerData;
+
     private Player player;
     private PlayerInputActions playerInputActions;
     private InputAction moveInputAction;
     private InputAction attackInputAction;
-    public Rigidbody2D rb2D;
-    public Animator anim;
-
+    private Rigidbody2D rb2D;
+    private Animator anim;
+    
     void Awake()
     {
         player = GetComponent<Player>();
@@ -99,9 +102,23 @@ public partial class PlayerController : MonoBehaviour
         anim.SetFloat("yVelocity", rb2D.velocity.y);
     }
 
+    public void UpdatePlayerData(float velocity, int health, int shield, int mana)
+    {
+        if (playerData == null) return;
+
+        playerData.velocity = velocity;
+        playerData.health = health;
+        playerData.shield = shield;
+        playerData.mana = mana;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         OnCollisionEnter2DMovement(collision);
     }
 
+    private void OnApplicationQuit()
+    {
+        playerData.isInitialized = false;
+    }
 }

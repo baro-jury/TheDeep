@@ -161,9 +161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  health: 100
-  shield: 5
-  mana: 200
+  health: 5
+  shield: 7
+  mana: 202
 --- !u!114 &6672712433020884188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,10 +186,9 @@ MonoBehaviour:
   range: 0.6
   damage: 5
   attacksPerSec: 3
-  FireRate: 5
   bulletForce: 20
+  playerData: {fileID: 11400000, guid: 2d621e40442213b4db8e7c2348477969, type: 2}
   gameOverUI: {fileID: 0}
-  bossBar: {fileID: 0}
   currentHP: 0
   currentShield: 0
   invulnerableTime: 1

@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     }
 
     public float velocity = 5f;
-    public int health = 7;
-    public int shield = 5;
+    public int health = 5;
+    public int shield = 7;
     public int mana = 202;
 }
 

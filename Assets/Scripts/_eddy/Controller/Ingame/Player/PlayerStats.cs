@@ -18,10 +18,20 @@ public partial class PlayerController : MonoBehaviour
 
     void InitStats()
     {
-        currentHP = player.health;
-        IngameController.instance.SetHP(currentHP, player.health);
-        currentShield = player.shield;
+        if (playerData.isInitialized)
+        {
+            currentHP = playerData.health;
+            currentShield = playerData.shield;
+        }
+        else
+        {
+            currentHP = player.health;
+            currentShield = player.shield;
+            UpdatePlayerData(player.velocity, currentHP, currentShield, player.mana);
+            playerData.isInitialized = true;
+        }
         IngameController.instance.SetShield(currentShield, player.shield);
+        IngameController.instance.SetHP(currentHP, player.health);
 
         shieldRecoveryTimer = 0;
         isInvulnerable = false;
@@ -42,16 +52,16 @@ public partial class PlayerController : MonoBehaviour
             {
                 currentShield++;
                 IngameController.instance.SetShield(currentShield, player.shield);
+                UpdatePlayerData(player.velocity, currentHP, currentShield, player.mana);
                 shieldRecoveryTimer = 0;
             }
         }
 
-        //if (currentHP <= 0 && !isDead)
-        //{
-        //    isDead = true;
-        //    Time.timeScale = 0f;
-        //    gameOverUI.SetActive(true);
-        //}
+        if (currentHP <= 0 && !isDead)
+        {
+            isDead = true;
+            IngameController.instance.Gameover();
+        }
 
     }
 
@@ -63,8 +73,6 @@ public partial class PlayerController : MonoBehaviour
             return;
         }
 
-        //currentHP -= damage;
-
         currentShield -= damage;
         if (currentShield < 0)
         {
@@ -75,6 +83,7 @@ public partial class PlayerController : MonoBehaviour
         anim.SetTrigger("IsHurt");
         IngameController.instance.SetHP(currentHP, player.health);
         IngameController.instance.SetShield(currentShield, player.shield);
+        UpdatePlayerData(player.velocity, currentHP, currentShield, player.mana);
         StartCoroutine(Invulnerable());
     }
 
@@ -83,17 +92,5 @@ public partial class PlayerController : MonoBehaviour
         isInvulnerable = true;
         yield return new WaitForSeconds(invulnerableTime);
         isInvulnerable = false;
-    }
-
-    public void GameOverRestart()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Scene_2");
-    }
-
-    public void MainMenuOver()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
     }
 }

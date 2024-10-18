@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class IngameController : MonoBehaviour
@@ -13,7 +14,6 @@ public class IngameController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
@@ -29,6 +29,7 @@ public class IngameController : MonoBehaviour
 
     [Header("Characters")]
     public List<GameObject> characters = new List<GameObject>();
+    private PlayerController player;
 
     [Header("Canvas")]
     public Image hpBar;
@@ -38,11 +39,14 @@ public class IngameController : MonoBehaviour
     public Button btPause;
     public GameObject panelPause;
     public Button btResume;
-    public Button btHome;
+    public GameObject panelGameover;
+    public Button btReplay;
+
+    public Button[] btnsHome;
 
     void Start()
     {
-        Instantiate(characters[0], transform);
+        InitPlayer();
 
         hpBar.type = Image.Type.Filled;
         hpBar.fillMethod = Image.FillMethod.Horizontal;
@@ -54,12 +58,26 @@ public class IngameController : MonoBehaviour
 
         btPause.gameObject.SetActive(true);
         panelPause.gameObject.SetActive(false);
+        panelGameover.gameObject.SetActive(false);
 
-        RemoveButtonListener(btPause, btResume, btHome);
+        RemoveButtonListener(btPause, btResume, btReplay);
+        RemoveButtonListener(btnsHome);
 
         btPause.onClick.AddListener(Pause);
         btResume.onClick.AddListener(Resume);
-        btHome.onClick.AddListener(GoHome);
+        btReplay.onClick.AddListener(Replay);
+        foreach (var btHome in btnsHome)
+        {
+            btHome.onClick.AddListener(GoHome);
+        }
+
+        Time.timeScale = 1;
+    }
+
+    void InitPlayer()
+    {
+        GameObject character = Instantiate(characters[0], transform);
+        player = character.GetComponent<PlayerController>();
     }
 
     private void RemoveButtonListener(params Button[] buttons)
@@ -71,6 +89,18 @@ public class IngameController : MonoBehaviour
     }
 
     #region Canvas
+    public void SetHP(float currentHP, float maxHP)
+    {
+        hpBar.fillAmount = currentHP / maxHP;
+        hpInfo.text = (int)currentHP + "/" + (int)maxHP;
+    }
+
+    public void SetShield(float currentShield, float maxShield)
+    {
+        shieldBar.fillAmount = currentShield / maxShield;
+        shieldInfo.text = (int)currentShield + "/" + (int)maxShield;
+    }
+
     public void Pause()
     {
         Time.timeScale = 0;
@@ -83,21 +113,24 @@ public class IngameController : MonoBehaviour
         panelPause.gameObject.SetActive(false);
     }
 
+    public void Replay()
+    {
+        player.playerData.isInitialized = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void GoHome()
     {
         print("way back homeeee");
+        //player.playerData.isInitialized = false;
+    }
+    
+    public void Gameover()
+    {
+        Time.timeScale = 0;
+        panelGameover.gameObject.SetActive(true);
+        //player.playerData.isInitialized = false;
     }
 
-    public void SetHP(float currentHP, float maxHP)
-    {
-        hpBar.fillAmount = currentHP / maxHP;
-        hpInfo.text = (int)currentHP + "/" + (int)maxHP;
-    }
-
-    public void SetShield(float currentShield, float maxShield)
-    {
-        shieldBar.fillAmount = currentShield / maxShield;
-        shieldInfo.text = (int)currentShield + "/" + (int)maxShield;
-    } 
     #endregion
 }
