@@ -23,9 +23,10 @@ public class LevelController : MonoBehaviour
     {
         //save player info
 
-        
+
         //load scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void winGame()

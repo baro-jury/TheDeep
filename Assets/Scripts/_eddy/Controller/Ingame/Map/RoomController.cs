@@ -29,7 +29,6 @@ public class RoomController : MonoBehaviour
         isClear = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F1))
@@ -54,14 +53,14 @@ public class RoomController : MonoBehaviour
 
     void ClearRoom()
     {
-        if (isActivated && isClear)
-        {
-            foreach (var gate in availableGates)
-            {
-                gate.gateCollider.isTrigger = true;
-                gate.gateRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        if (!isActivated) return;
 
-            }
+        if (!isClear) return;
+
+        foreach (var gate in availableGates)
+        {
+            gate.gateCollider.isTrigger = true;
+            gate.gateRenderer.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
     }
 }

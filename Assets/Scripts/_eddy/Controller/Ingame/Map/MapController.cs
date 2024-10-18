@@ -15,14 +15,15 @@ public class MapController : MonoBehaviour
 
     [Header("Object")]
     public GameObject roomNormal;
+    public GameObject roomLast;
     public GameObject roadHorizontal, roadVertical;
 
     [Header("Map")]
     public int numberOfRoom;
     public List<GameObject> roomList;
 
-    private RoomController roomNor;
-    private RoadController roadH, roadV;
+    private RoomController roomCtrl;
+    private RoadController roadHCtrl, roadVCtrl;
 
     private GameObject currentRoom;
     private int absDistanceRoomX, absDistanceRoomY;
@@ -31,16 +32,16 @@ public class MapController : MonoBehaviour
     {
         roomList = new List<GameObject>();
 
-        roomNor = roomNormal.GetComponent<RoomController>();
-        roadH = roadHorizontal.GetComponent<RoadController>();
-        roadV = roadVertical.GetComponent<RoadController>();
+        roomCtrl = roomNormal.GetComponent<RoomController>();
+        roadHCtrl = roadHorizontal.GetComponent<RoadController>();
+        roadVCtrl = roadVertical.GetComponent<RoadController>();
 
         //TilemapResizer.instance.TrimTilemap(roomNor.ground);
         //TilemapResizer.instance.TrimTilemap(roadH.ground);
         //TilemapResizer.instance.TrimTilemap(roadV.ground);
 
-        absDistanceRoomX = roomNor.ground.size.x + roadH.ground.size.x;
-        absDistanceRoomY = roomNor.ground.size.y + roadV.ground.size.y;
+        absDistanceRoomX = roomCtrl.ground.size.x + roadHCtrl.ground.size.x;
+        absDistanceRoomY = roomCtrl.ground.size.y + roadVCtrl.ground.size.y;
 
         GenerateMap(transform.position);
         OpenGates(roomList);
@@ -101,7 +102,9 @@ public class MapController : MonoBehaviour
                 break;
         }
 
-        var room = Instantiate(roomNormal, pos, Quaternion.identity, transform);
+        var room = Instantiate(
+            roomList.Count < (numberOfRoom - 1) ? roomNormal : roomLast,
+            pos, Quaternion.identity, transform);
         roomList.Add(room);
         GenerateRoom(room);
 

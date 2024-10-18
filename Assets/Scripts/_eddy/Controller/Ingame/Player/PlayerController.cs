@@ -9,8 +9,8 @@ public partial class PlayerController : MonoBehaviour
     private PlayerInputActions playerInputActions;
     private InputAction moveInputAction;
     private InputAction attackInputAction;
-    private Rigidbody2D rb2D;
-    private Animator anim;
+    public Rigidbody2D rb2D;
+    public Animator anim;
 
     void Awake()
     {
@@ -21,7 +21,6 @@ public partial class PlayerController : MonoBehaviour
     void Start()
     {
         CameraController.instance.player = player.transform;
-        CameraController.instance.cinemachine.ActiveVirtualCamera.Follow = player.transform;
 
         rb2D = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -48,6 +47,12 @@ public partial class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (CameraController.instance.cinemachine.ActiveVirtualCamera != null &&
+            CameraController.instance.cinemachine.ActiveVirtualCamera.Follow == null)
+        {
+            CameraController.instance.cinemachine.ActiveVirtualCamera.Follow = player.transform;
+        }
+
         InputResponse();
 
         MyPlayerAttack();

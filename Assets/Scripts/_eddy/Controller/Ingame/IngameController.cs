@@ -13,6 +13,7 @@ public class IngameController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            //DontDestroyOnLoad(this);
         }
         else if (instance != this)
         {
@@ -28,23 +29,20 @@ public class IngameController : MonoBehaviour
 
     [Header("Characters")]
     public List<GameObject> characters = new List<GameObject>();
-    public Dictionary<int, GameObject> characterDictionary = new Dictionary<int, GameObject>();
 
     [Header("Canvas")]
     public Image hpBar;
     public TextMeshProUGUI hpInfo;
     public Image shieldBar;
     public TextMeshProUGUI shieldInfo;
-    public Button btPause, btResume;
+    public Button btPause;
+    public GameObject panelPause;
+    public Button btResume;
+    public Button btHome;
 
-    // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < characters.Count; i++)
-        {
-            characterDictionary.Add(i + 1, characters[i]);
-        }
-        Instantiate(characterDictionary[1], transform);
+        Instantiate(characters[0], transform);
 
         hpBar.type = Image.Type.Filled;
         hpBar.fillMethod = Image.FillMethod.Horizontal;
@@ -55,12 +53,13 @@ public class IngameController : MonoBehaviour
         shieldBar.fillOrigin = (int)Image.OriginHorizontal.Left;
 
         btPause.gameObject.SetActive(true);
-        btResume.gameObject.SetActive(false);
+        panelPause.gameObject.SetActive(false);
 
-        RemoveButtonListener(btPause, btResume);
+        RemoveButtonListener(btPause, btResume, btHome);
 
         btPause.onClick.AddListener(Pause);
         btResume.onClick.AddListener(Resume);
+        btHome.onClick.AddListener(GoHome);
     }
 
     private void RemoveButtonListener(params Button[] buttons)
@@ -71,16 +70,22 @@ public class IngameController : MonoBehaviour
         }
     }
 
-    void Pause()
+    #region Canvas
+    public void Pause()
     {
         Time.timeScale = 0;
-        btResume.gameObject.SetActive(true);
+        panelPause.gameObject.SetActive(true);
     }
 
-    void Resume()
+    public void Resume()
     {
         Time.timeScale = 1;
-        btResume.gameObject.SetActive(false);
+        panelPause.gameObject.SetActive(false);
+    }
+
+    public void GoHome()
+    {
+        print("way back homeeee");
     }
 
     public void SetHP(float currentHP, float maxHP)
@@ -93,5 +98,6 @@ public class IngameController : MonoBehaviour
     {
         shieldBar.fillAmount = currentShield / maxShield;
         shieldInfo.text = (int)currentShield + "/" + (int)maxShield;
-    }
+    } 
+    #endregion
 }

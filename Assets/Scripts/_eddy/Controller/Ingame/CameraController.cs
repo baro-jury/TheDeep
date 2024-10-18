@@ -20,8 +20,8 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    public CinemachineBrain cinemachine;
     [HideInInspector] public Transform player;
-    [HideInInspector] public CinemachineBrain cinemachine;
 
     void Awake()
     {
