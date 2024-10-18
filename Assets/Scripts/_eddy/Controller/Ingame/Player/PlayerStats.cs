@@ -14,7 +14,7 @@ public partial class PlayerController : MonoBehaviour
     [SerializeField] private float shieldRecoveryTime;
     private float shieldRecoveryTimer;
     private bool isInvulnerable;
-    private bool isDead;
+    public bool isDead;
 
     void InitStats()
     {
@@ -60,7 +60,7 @@ public partial class PlayerController : MonoBehaviour
         if (currentHP <= 0 && !isDead)
         {
             isDead = true;
-            IngameController.instance.Gameover();
+            StartCoroutine(Gameover());
         }
 
     }
@@ -92,5 +92,11 @@ public partial class PlayerController : MonoBehaviour
         isInvulnerable = true;
         yield return new WaitForSeconds(invulnerableTime);
         isInvulnerable = false;
+    }
+
+    IEnumerator Gameover()
+    {
+        yield return new WaitForSeconds(2f);
+        IngameController.instance.Gameover();
     }
 }

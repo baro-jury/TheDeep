@@ -32,6 +32,8 @@ public partial class MonsterController : MonoBehaviour
 
     protected virtual void MonsterAttack()
     {
+        if (target.isDead) return;
+
         Vector2 direction = target.transform.position - attackPoint.position;
 
         //target.TakeDamage(damageToGive);  can chien

@@ -12,6 +12,8 @@ public partial class MonsterController : MonoBehaviour
 
     protected virtual void MonsterMove()
     {
+        if (target.isDead) return;
+
         distance = Vector2.Distance(transform.position, target.transform.position);
         moveable = true;
         if (moveable == true)

@@ -10,6 +10,8 @@ public partial class PlayerController : MonoBehaviour
 
     void MyPlayerMove()
     {
+        if (isDead) return;
+
         rb2D.velocity = new Vector2(player.velocity * moveDirection.x, player.velocity * moveDirection.y);
 
         Vector3 scale = transform.localScale;

@@ -100,6 +100,7 @@ public partial class PlayerController : MonoBehaviour
     {
         anim.SetFloat("xVelocity", rb2D.velocity.x);
         anim.SetFloat("yVelocity", rb2D.velocity.y);
+        anim.SetBool("IsDead", isDead);
     }
 
     public void UpdatePlayerData(float velocity, int health, int shield, int mana)
@@ -114,6 +115,8 @@ public partial class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (isDead) return;
+
         OnCollisionEnter2DMovement(collision);
     }
 
